@@ -6,7 +6,7 @@
 1. Pre-Creation
     > 1.1. Introduction \
     > 1.2. Contents \
-    > 1.3. Planning \
+    > 1.3. Planning 
     >> 1.3.1. How the Program Operates \
     >> 1.3.2. Program Flow
 2. Creatiom
