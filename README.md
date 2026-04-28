@@ -8,16 +8,16 @@
     > 1.3. Planning \
     > 1.4. Program Flow
 2. Creatiom
-    > 1.1. How The Topic and Concept Applies \
-    > 1.2. Modularization and File Systems \
-    > 1.3. Code Explanation \
-    > 1.4. Errors Faced \
-    > 1.5. Experiences
+    > 2.1. How The Topic and Concept Applies \
+    > 2.2. Modularization and File Systems \
+    > 2.3. Code Explanation \
+    > 2.4. Errors Faced \
+    > 2.5. Experiences
 3. Post-Creation
-    > 1.1. Conclusion \
-    > 1.2. Problems faced \
-    > 1.3. Reflection \
-    > 1.4. Recommendations 
+    > 3.1. Conclusion \
+    > 3.2. Problems faced \
+    > 3.3. Reflection \
+    > 3.4. Recommendations 
 
 ## Chapter 1 : Pre-Creation
 
