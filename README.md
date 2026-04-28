@@ -4,7 +4,7 @@
 
 ### Introduction
 
-This project serves as a practice for my software engineering career. This will be my first biggest project and repository. This may serve as a guideline for beginners or may also be used a source for those who wishes for this. This documents will serve as the documentation of the project, showing how planned, made and tested the project. Note that this project also uses AI as a tool for suggestions and checking for mistakes not seen by the programmer.
+&emsp This project serves as a practice for my software engineering career. This will be my first biggest project and repository. This may serve as a guideline for beginners or may also be used a source for those who wishes for this. This README will serve as the documentation of the project, showing how the developer planned, made and tested the project. Note that this project also uses AI as a tool for suggestions and checking for mistakes not seen by the programmer.
 
 ### Contents
 
@@ -22,6 +22,7 @@ This project serves as a practice for my software engineering career. This will 
 10. Structs
 11. File Handling
 12. Objects and Classes
+13. Namespaces
 
 #### This program may also include the following concepts:
 
@@ -34,4 +35,11 @@ This project serves as a practice for my software engineering career. This will 
 
 ### Planning
 
-####
+#### How the program operates:
+
+- The program will use a menu-driven approach, meaning the user must input a choice in order for the program to proceed.
+- Classes will be used to determine the type of users and seperate the functions by methods.
+- Linked lists nodes will be used to define users.
+- There will be two types of users: client and admin.
+- The CLIENT may use three operations: Transaction (check savings, deposit, withdraw, view transaction history); Personal Info(view info, edit info); and Inbox (check inbox, view messages, send inbox).
+- The ADMIN may use three operations: Transaction (check savings, deposit, withdraw, view transaction history); Personal Info(view info, edit info); Inbox (check inbox, view messages, send inbox); and Admin Controls (add user, remove user, view all users, view user, view logs)
