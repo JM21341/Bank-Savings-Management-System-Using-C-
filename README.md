@@ -7,7 +7,8 @@
     > 1.1. Introduction \
     > 1.2. Contents \
     > 1.3. Planning \
-    > 1.4. Program Flow
+    >> 1.3.1. How the Program Operates \
+    >> 1.3.2. Program Flow
 2. Creatiom
     > 2.1. How The Topic and Concept Applies \
     > 2.2. Modularization and File Systems \
