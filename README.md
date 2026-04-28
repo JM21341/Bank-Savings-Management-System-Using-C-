@@ -1,5 +1,24 @@
 # Bank Savings Management System Using C++
 
+## Table Of Contents
+
+1. Pre-Creation
+    > 1.1. Introduction \
+    > 1.2. Contents \
+    > 1.3. Planning \
+    > 1.4. Program Flow
+2. Creatiom
+    > 1.1. How The Topic and Concept Applies \
+    > 1.2. Modularization and File Systems \
+    > 1.3. Code Explanation \
+    > 1.4. Errors Faced \
+    > 1.5. Experiences
+3. Post-Creation
+    > 1.1. Conclusion \
+    > 1.2. Problems faced \
+    > 1.3. Reflection \
+    > 1.4. Recommendations 
+
 ## Chapter 1 : Pre-Creation
 
 ### Introduction
@@ -53,6 +72,7 @@ This project serves as a practice for my software engineering career. This will 
     > 3.3. If user == admin, then go to Admin Controls \
     > 3.2. If user == client, then go to Client Controls \
     > 3.3. Else, print "Invalid username. Try again." \
-    > 3.4. Break if isExit == true \
+    > 3.4. Break if isExit == true 
 4. Print "Thank you"
 ### END
+
