@@ -50,9 +50,9 @@ This project serves as a practice for my software engineering career. This will 
 1. Run login() function
 2. Determine user (Admin or Client)
 3. Run while isExit == true
-    > 3.3. If user == admin, then go to Admin Controls
-    > 3.2. If user == client, then go to Client Controls
-    > 3.3. Else, print "Invalid username. Try again."
-    > 3.4. Break if isExit == true
+    > 3.3. If user == admin, then go to Admin Controls \
+    > 3.2. If user == client, then go to Client Controls \
+    > 3.3. Else, print "Invalid username. Try again." \
+    > 3.4. Break if isExit == true \
 4. Print "Thank you"
 ### END
