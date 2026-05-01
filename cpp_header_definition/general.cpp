@@ -2,7 +2,6 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-#include <iomanip>
 
 #include "../header/general.h"
 #include "../header/classes.h"
