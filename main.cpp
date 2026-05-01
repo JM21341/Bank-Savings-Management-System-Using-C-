@@ -21,7 +21,7 @@ int main(){
             cont = Admin::adminControls(head); // for admin controls such as add user, remove user, etc.
         }
         else if(role == "Client"){ 
-            Client::clientControls(head); // for user controls such as transactions, edit personal info, etc.
+            cont = Client::clientControls(head); // for user controls such as transactions, edit personal info, etc.
         }
         else{
             std::cout << "An error occurred in determining the user role." << std::endl;
