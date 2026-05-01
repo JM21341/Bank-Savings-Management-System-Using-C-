@@ -51,8 +51,10 @@ This project serves as a practice for my software engineering career. This will 
 2. Basic Object-Oriented Programming
 3. Linked Lists
 4. Algorithms
-5. Conesole-Based Approach
+5. Console-Based Approach
 6. Menu-driven Program
+7. File-Based Records Management System
+8. Testing and Debugging
 
 ### Planning
 
