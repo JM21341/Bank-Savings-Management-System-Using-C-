@@ -2,6 +2,7 @@
 #define STRUCTS_H
 
 #include "classes.h"
+#include <string>
 
 namespace Structs{
     struct Transaction{
