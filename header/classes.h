@@ -30,15 +30,17 @@ namespace Classes{
             std::string ID;
 
         public:
+            // GETTERS AND SETTERS
             // getters
-            std::string getUsername() const { return username; }
-            std::string getPassword() const { return password; }
+            std::string getUsername() const { return username; } // retrieves username
+            std::string getPassword() const { return password; } // retrieves password
 
             // setters
-            void setLoginDetails(std::string& username, std::string& password, std::string& user_id){
-                this->username = username;
-                this->password = password;
-                ID = user_id;
+            void setLoginDetails(std::string& username, std::string& password, std::string role, std::string& user_id){
+                this->username = username; // sets username
+                this->password = password; // sets password
+                this->role = role;
+                ID = user_id; // sets ID
             }
     };
 
