@@ -97,30 +97,33 @@ Structs::Node* General::readDataFromFile(Structs::Node* head){
 }
 
 Structs::Node* General::login(Structs::Node* head){
-    std::string username, password;
-    bool found = false;
+    std::string username, password; // variables to store the username and password from user input
+    bool found = false; 
 
-    Structs::Node* curr = head;
+    Structs::Node* curr = head; // create a temporary node
 
     do{
+        // user login input
         std::cout << "Enter username: ";
         std::getline(std::cin, username);
         
         std::cout << std::endl << "Enter password: ";
         std::getline(std::cin, password);
 
+        // traverse through every node in the linked lists
         while(curr != NULL){
+            // if the username and password is correct, print a prompt, set found to true then break the loop
             if(username == curr->data.getUsername() && password == curr->data.getPassword()){
                 std::cout << "You have successfully logged in." << std::endl;
                 found = true;
                 break;
             }
 
-            curr = curr->next;
+            curr = curr->next; // moves to the next node
         }
 
         if(!found){
-            std::cout << "User not found. Please log in again." << std::endl;
+            std::cout << "Incorrect username and/or password. Please try again." << std::endl;
             continue;
         }
     } while(!found);
