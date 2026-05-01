@@ -88,6 +88,7 @@ Structs::Node* General::readDataFromFile(Structs::Node* head){
             Structs::Node* curr = head; // creates a temp ptr which traverses through each node
             while(curr->next != NULL) curr = curr->next; // search for a node which doesn't have a next link
             curr->next = temp; // sets the link of that node to the temp
+            
         }
     }
 
@@ -96,4 +97,34 @@ Structs::Node* General::readDataFromFile(Structs::Node* head){
     return head;
 }
 
-std::string General::login(Structs::Node* head);
+Structs::Node* General::login(Structs::Node* head){
+    std::string username, password;
+    bool found = false;
+
+    Structs::Node* curr = head;
+
+    do{
+        std::cout << "Enter username: ";
+        std::getline(std::cin, username);
+        
+        std::cout << std::endl << "Enter password: ";
+        std::getline(std::cin, password);
+
+        while(curr != NULL){
+            if(username == curr->data.getUsername() && password == curr->data.getPassword()){
+                std::cout << "You have successfully logged in." << std::endl;
+                found = true;
+                break;
+            }
+
+            curr = curr->next;
+        }
+
+        if(!found){
+            std::cout << "User not found. Please log in again." << std::endl;
+            continue;
+        }
+    } while(!found);
+
+    return curr;
+}

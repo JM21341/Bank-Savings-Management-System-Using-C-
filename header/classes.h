@@ -33,6 +33,7 @@ namespace Classes{
             // getters
             std::string getUsername() const { return username; } // retrieves username
             std::string getPassword() const { return password; } // retrieves password
+            std::string getRole() const { return role; } // retrieves role(admin/client)
 
             // setters
             void setLoginDetails(std::string& username, std::string& password, std::string role, std::string& user_id){

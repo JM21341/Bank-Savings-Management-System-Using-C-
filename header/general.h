@@ -6,7 +6,7 @@
 
 namespace General{
     Structs::Node* readDataFromFile(Structs::Node* temp_head); // returns head
-    std::string login(Structs::Node* head); // returns the user role
+    Structs::Node* login(Structs::Node* head); // returns the user role
 }
 
 #endif

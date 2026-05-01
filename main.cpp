@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 #include "header/structs.h"
 #include "header/general.h"
 #include "header/admin.h"
@@ -13,14 +12,14 @@ int main(){
     head = General::readDataFromFile(head); // defines the list by reading the file
 
     do{
-        std::string role = General::login(head); // user login
+        Structs::Node* curr = General::login(head); // user login
 
         if(!cont) break;
 
-        if(role == "Admin"){ 
+        if(curr->data.getRole() == "Admin"){ 
             cont = Admin::adminControls(head); // for admin controls such as add user, remove user, etc.
         }
-        else if(role == "Client"){ 
+        else if(curr->data.getRole() == "Client"){ 
             cont = Client::clientControls(head); // for user controls such as transactions, edit personal info, etc.
         }
         else{
