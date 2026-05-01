@@ -17,8 +17,8 @@ namespace Classes{
             std::string full_name;
             int age;
             std::string birthdate;
-            std::string email[MAX_CONTACT];
-            std::string contact_number[MAX_CONTACT];
+            std::string email;
+            std::string contact_number;
 
             // private details
             std::string home_address;
@@ -26,7 +26,6 @@ namespace Classes{
             
             // bank details
             double balance;
-            std::string bank_number;
             std::string ID;
 
         public:
@@ -41,6 +40,20 @@ namespace Classes{
                 this->password = password; // sets password
                 this->role = role;
                 ID = user_id; // sets ID
+            }
+
+            void setBalance(double& balance){
+                this->balance = balance; 
+            }
+
+            void setPersonalDetails(std::string& name, int& age, std::string& birthdate, std::string& email, std::string& contact_number, std::string& home_address, std::string& TIN){
+                full_name = name;
+                TIN_number = TIN;
+                this->age = age;
+                this->birthdate = birthdate;
+                this->email = email;
+                this->contact_number = contact_number;
+                this->home_address = home_address;
             }
     };
 }
