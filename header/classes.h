@@ -7,7 +7,7 @@
 
 namespace Classes{
     class User{
-        private:
+        protected:
             // importang details
             std::string role;
             std::string username;
@@ -43,8 +43,6 @@ namespace Classes{
                 ID = user_id; // sets ID
             }
     };
-
-
 }
 
 #endif
