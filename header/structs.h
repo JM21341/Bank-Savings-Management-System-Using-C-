@@ -1,9 +1,11 @@
 #ifndef STRUCTS_H
 #define STRUCTS_H
 
+#include "classes.h"
+
 namespace Structs{
     struct Node{
-        int data; // skeleton for struct
+        Classes::User data;
         Node* next;
     };
 }
