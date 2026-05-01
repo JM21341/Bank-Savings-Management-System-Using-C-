@@ -60,7 +60,7 @@ This project serves as a practice for my software engineering career. This will 
 
 - The program will use a menu-driven approach, meaning the user must input a choice in order for the program to proceed.
 - Classes will be used to determine the type of users and seperate the functions by methods.
-- Linked lists nodes will be used to define users.
+- Linked lists nodes will be used to store users.
 - There will be two types of users: client and admin.
 - The CLIENT may use three operations: Transaction (check savings, deposit, withdraw, view transaction history); Personal Info(view info, edit info); and Inbox (check inbox, view messages, send inbox).
 - The ADMIN may use three operations: Transaction (check savings, deposit, withdraw, view transaction history); Personal Info(view info, edit info); Inbox (check inbox, view messages, send inbox); and Admin Controls (add user, remove user, view all users, view user, view logs).
@@ -77,4 +77,3 @@ This project serves as a practice for my software engineering career. This will 
     > 3.4. Break if isExit == true 
 4. Print "Thank you"
 ### END
-
