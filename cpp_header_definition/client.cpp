@@ -43,10 +43,10 @@ bool Client::clientControls(Structs::Node *curr){
                         Client::checkSavings(curr);
                         break;
                     case 2:
-                        Client::deposit(curr);
+                        curr = Client::deposit(curr);
                         break;
                     case 3:
-                        Client::withdraw(curr);
+                        curr = Client::withdraw(curr);
                         break;
                     case 4:
                         Client::viewTransactionHistory(curr);
@@ -76,7 +76,7 @@ bool Client::clientControls(Structs::Node *curr){
                         Client::viewPersonalInfo(curr);
                         break;
                     case 2:
-                        Client::editPersonalInfo(curr);
+                        curr = Client::editPersonalInfo(curr);
                         break;
                     case 3:
                         break;
