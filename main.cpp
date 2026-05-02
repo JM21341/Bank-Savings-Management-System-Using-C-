@@ -17,6 +17,7 @@ int main(){
         if(!cont) break;
 
         if(curr->data.getRole() == "Admin"){ 
+            std::cout << "Still to be added." << std::endl;
             cont = Admin::adminControls(head); // for admin controls such as add user, remove user, etc.
         }
         else if(curr->data.getRole() == "Client"){ 

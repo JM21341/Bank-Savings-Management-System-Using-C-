@@ -2,10 +2,16 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <chrono> // for determining the seconds
+#include <thread> // for sleep_for (time delay)
 
 #include "../header/general.h"
 #include "../header/classes.h"
 #include "../header/structs.h"
+
+void General::wait(int n){
+    std::this_thread::sleep_for(std::chrono::seconds(n));
+}
 
 Structs::Node* General::readDataFromFile(Structs::Node* head){
     if(head != NULL){
