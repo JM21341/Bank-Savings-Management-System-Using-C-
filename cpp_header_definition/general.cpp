@@ -87,7 +87,6 @@ Structs::Node* General::readDataFromFile(Structs::Node* head){
             Structs::Node* curr = head; // creates a temp ptr which traverses through each node
             while(curr->next != NULL) curr = curr->next; // search for a node which doesn't have a next link
             curr->next = temp; // sets the link of that node to the temp
-            
         }
     }
 
