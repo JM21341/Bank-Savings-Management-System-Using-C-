@@ -41,15 +41,19 @@ bool Client::clientControls(Structs::Node *curr){
                 switch(dec2){
                     case 1:
                         Client::checkSavings(curr);
+                        cont = General::askToContinue();
                         break;
                     case 2:
                         curr = Client::deposit(curr);
+                        cont = General::askToContinue();
                         break;
                     case 3:
                         curr = Client::withdraw(curr);
+                        cont = General::askToContinue();
                         break;
                     case 4:
                         Client::viewTransactionHistory(curr);
+                        cont = General::askToContinue();
                         break;
                     case 5:
                         break;
@@ -74,9 +78,11 @@ bool Client::clientControls(Structs::Node *curr){
                 switch(dec2){
                     case 1:
                         Client::viewPersonalInfo(curr);
+                        cont = General::askToContinue();
                         break;
                     case 2:
                         curr = Client::editPersonalInfo(curr);
+                        cont = General::askToContinue();
                         break;
                     case 3:
                         break;
@@ -104,4 +110,38 @@ bool Client::clientControls(Structs::Node *curr){
         General::wait(2);
         system("cls");
     }while(cont);
+
+    if(exit) return false;
+    if(logout) return true;
+}
+
+void checkSavings(Structs::Node* curr){
+    std::cout << "========== BANK ==========" << std::endl;
+    std::cout << "Hello, " << curr->data.getUsername() << std::endl;
+    std::cout << "This is your current balance: " << curr->data.getBalance() << std::endl;
+}
+
+Structs::Node* Client::deposit(Structs::Node *curr){
+    double amount = 0;
+    bool cont = true;
+
+    std::cout << "========== BANK ==========" << std::endl;
+    std::cout << "Hello, " << curr->data.getUsername() << std::endl << std::endl;
+
+    do{
+        std::cout << "Enter deposit amount: " ;
+        std::cin >> amount;
+
+        if(amount >= 0){
+            curr->data.modifyBalance(amount, "Deposit");
+            cont = false;
+        } else{
+            std::cout << "Invalid amount." << std::endl;
+        }
+
+        General::wait(2);
+        system("cls");
+    } while(cont);
+
+    return curr;
 }

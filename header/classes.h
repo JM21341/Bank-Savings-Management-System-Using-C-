@@ -8,7 +8,7 @@
 namespace Classes{
     class User{
         protected:
-            // importang details
+            // important details
             std::string role;
             std::string username;
             std::string password;
@@ -34,6 +34,7 @@ namespace Classes{
             std::string getUsername() const { return username; } // retrieves username
             std::string getPassword() const { return password; } // retrieves password
             std::string getRole() const { return role; } // retrieves role(admin/client)
+            double getBalance() const{ return balance; } // retrieves balance
 
             // setters
             void setLoginDetails(std::string& username, std::string& password, std::string role, std::string& user_id){
@@ -55,6 +56,13 @@ namespace Classes{
                 this->email = email;
                 this->contact_number = contact_number;
                 this->home_address = home_address;
+            }
+
+            // METHODS
+            // modifies balance
+            void modifyBalance(double amount, std::string purpose){
+                if(purpose == "Deposit") balance += amount;
+                else if(purpose == "Withdraw") balance -= amount;
             }
     };
 }

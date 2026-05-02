@@ -135,3 +135,18 @@ Structs::Node* General::login(Structs::Node* head){
 
     return curr;
 }
+
+bool General::askToContinue(){
+    char dec;
+    bool cont;
+
+    do{
+        cont = false;
+        std::cout << "Do you wish to continue (Y/n): ";
+        std::cin >> dec;
+
+        if(dec == 'Y' || dec == 'y') return true;
+        else if(dec == 'N' || dec == 'n') return false;
+        else cont = true;
+    } while(cont);
+}
