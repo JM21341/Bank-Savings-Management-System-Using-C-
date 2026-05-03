@@ -31,5 +31,7 @@ int main(){
 
     std::cout << "Exiting..." << std::endl;
 
+    delete(head);
+
     return 0;
 }
