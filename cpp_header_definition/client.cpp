@@ -293,7 +293,7 @@ Structs::Node* Client::withdraw(Structs::Node *curr){
     return curr;
 }
 
-void viewTransactionHistory(Structs::Node* curr){
+void Client::viewTransactionHistory(Structs::Node* curr){
     std::cout << "========== BANK ==========" << std::endl;
     std::cout << "Hello, " << curr->data.getUsername() << ". This is your transaction history." << std::endl;
 
