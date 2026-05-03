@@ -115,10 +115,12 @@ bool Client::clientControls(Structs::Node *curr){
     if(logout) return true;
 }
 
-void checkSavings(Structs::Node* curr){
+void Client::checkSavings(Structs::Node* curr){
     std::cout << "========== BANK ==========" << std::endl;
     std::cout << "Hello, " << curr->data.getUsername() << std::endl;
     std::cout << "This is your current balance: " << curr->data.getBalance() << std::endl;
+
+    return;
 }
 
 Structs::Node* Client::deposit(Structs::Node *curr){
@@ -128,7 +130,7 @@ Structs::Node* Client::deposit(Structs::Node *curr){
     do{
         std::cout << "========== BANK ==========" << std::endl;
         std::cout << "Hello, " << curr->data.getUsername() << std::endl << std::endl;
-        
+
         std::cout << "Enter deposit amount: " ;
         std::cin >> amount;
 
@@ -142,6 +144,40 @@ Structs::Node* Client::deposit(Structs::Node *curr){
         General::wait(2);
         system("cls");
     } while(cont);
+
+    General::updateFile(curr);
+
+    return curr;
+}
+
+Structs::Node* Client::withdraw(Structs::Node *curr){
+    double amount = 0;
+    bool cont = true;
+    int i = 0;
+
+    do{
+        std::cout << "========== BANK ==========" << std::endl;
+        std::cout << "Hello, " << curr->data.getUsername() << std::endl << std::endl;
+
+        std::cout << "Input 0 if you want to go back" << std::endl << std::endl;
+        std::cout << "Enter withdraw amount: " ;
+        std::cin >> amount;
+
+        if(amount > 0 && amount <= curr->data.getBalance()){
+            curr->data.modifyBalance(amount, "Withdraw");
+            cont = false;
+        } else if(i <= 5 && amount > curr->data.getBalance()){
+            std::cout << "Invalid amount. Not enough balance." << std::endl;
+        } else if(amount == 0) break;
+        else{
+            std::cout << "Invalid input! Please try again." << std::endl;
+        }
+
+        General::wait(2);
+        system("cls");
+    } while(cont);
+
+    General::updateFile(curr);
 
     return curr;
 }

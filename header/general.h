@@ -10,6 +10,7 @@ namespace General{
     void wait(int seconds);
     bool askToContinue();
     Structs::Transaction* readTransactionFromRecord(Structs::Node* curr);
+    void updateFile(Structs::Node* curr);
 }
 
 #endif

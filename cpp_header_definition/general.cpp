@@ -4,6 +4,7 @@
 #include <sstream>
 #include <chrono> // for determining the seconds
 #include <thread> // for sleep_for (time delay)
+#include <filesystem> // for delete and rename
 
 #include "../header/general.h"
 #include "../header/classes.h"
@@ -58,8 +59,12 @@ Structs::Transaction* General::readTransactionFromRecord(Structs::Node *curr){
             point->next = temp; // sets the link of that node to the temp
         }
 
+        delete(temp); // frees memory 
+
         // will run until the EOF (end of file)
     }
+
+    file.close();
 
     return transaction_head; 
 }
@@ -124,7 +129,6 @@ Structs::Node* General::readDataFromFile(Structs::Node* head){
             std::getline(ss2, email, ',');
             std::getline(ss2, home_address, ',');
             std::getline(ss2, TIN_number, ',');
-            std::getline(ss2, bank_number, ',');
         }
 
         // handles the error in case it is empty
@@ -147,6 +151,9 @@ Structs::Node* General::readDataFromFile(Structs::Node* head){
             while(curr->next != NULL) curr = curr->next; // search for a node which doesn't have a next link
             curr->next = temp; // sets the link of that node to the temp
         }
+
+        file2.close();
+        delete(temp);
     }
 
     file.close(); // closes user.csv
@@ -202,4 +209,37 @@ bool General::askToContinue(){
         else if(dec == 'N' || dec == 'n') return false;
         else cont = true;
     } while(cont);
+}
+
+void updateFile(Structs::Node* curr){
+    std::stringstream filename; // for filename
+    filename << "../records/user_database/" << curr->data.getUsername() << ".txt"; // sets the filename to the directory of the specific transaction database
+
+    std::string file_path = filename.str(); // converts the variable from a stringstream to string
+
+    std::ofstream file("../records/transaction_database/temp.txt"); // opens the directory
+
+    if(!file.is_open()){
+        std::cerr << "File was not created in updateFile" << std::endl;
+        return;
+    }
+
+    while(curr != NULL){
+        file << curr->data.getName() << "," << 
+            curr->data.getAge() << "," << 
+            curr->data.getBirthdate() << "," << 
+            curr->data.getBalance() << "," << 
+            curr->data.getContactNum() << "," << 
+            curr->data.getEmail() << "," << 
+            curr->data.getAddress() << "," << 
+            curr->data.getTIN() << "," << 
+            std::endl;
+
+        curr = curr->next;
+    }
+
+    std::filesystem::remove(file_path);
+    std::filesystem::rename("../records/transaction_database/temp.txt", file_path);
+
+    file.close();
 }
