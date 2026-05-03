@@ -292,3 +292,19 @@ Structs::Node* Client::withdraw(Structs::Node *curr){
 
     return curr;
 }
+
+void viewTransactionHistory(Structs::Node* curr){
+    std::cout << "========== BANK ==========" << std::endl;
+    std::cout << "Hello, " << curr->data.getUsername() << ". This is your transaction history." << std::endl;
+
+    while(curr->transaction != NULL){
+        std::cout << "----------------------------------------" << std::endl; 
+        std::cout << "Transaction Number:  " << curr->transaction->transaction_num << std::endl; 
+        std::cout << "Transaction ID:      " << curr->transaction->transaction_id << std::endl; 
+        std::cout << "Transaction Details: " << curr->transaction->details << std::endl; 
+        std::cout << "Transaction Date:    " << curr->transaction->date << std::endl; 
+        std::cout << "Transaction Amount:  " << ((curr->transaction->details == "Deposit") ? '+' : '-') << curr->transaction->amount << std::endl; 
+        std::cout << "Balance:             " << curr->transaction->transaction_num << std::endl; 
+        std::cout << "----------------------------------------" << std::endl; 
+    }
+}
