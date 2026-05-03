@@ -9,11 +9,11 @@
 
 void Client::updateTransactionFile(Structs::Node* curr){
     std::stringstream filename; // for filename
-    filename << "../records/transaction_database/" << curr->data.getUsername() << ".txt"; // sets the filename to the directory of the specific transaction database
+    filename << "../records/transaction_database/" << curr->data.getUsername() << ".csv"; // sets the filename to the directory of the specific transaction database
 
     std::string file_path = filename.str(); // converts the variable from a stringstream to string
 
-    std::ofstream file("../records/transaction_database/temp.txt"); // opens the directory
+    std::ofstream file("../records/transaction_database/temp.csv"); // opens the directory
 
     if(!file.is_open()){
         std::cerr << "File was not created in updateFile" << std::endl;
@@ -21,21 +21,19 @@ void Client::updateTransactionFile(Structs::Node* curr){
     }
 
     while(curr != NULL){
-        file << curr->data.getName() << "," << 
-            curr->data.getAge() << "," << 
-            curr->data.getBirthdate() << "," << 
-            curr->data.getBalance() << "," << 
-            curr->data.getContactNum() << "," << 
-            curr->data.getEmail() << "," << 
-            curr->data.getAddress() << "," << 
-            curr->data.getTIN() << "," << 
+        file << curr->transaction->transaction_num << "," << 
+            curr->transaction->transaction_id << "," << 
+            "curr->transaction->details" << "," << 
+            curr->transaction->date << "," << 
+            curr->transaction->amount << "," << 
+            curr->transaction->new_balance << "," << 
             std::endl;
 
         curr = curr->next;
     }
 
     std::filesystem::remove(file_path);
-    std::filesystem::rename("../records/transaction_database/temp.txt", file_path);
+    std::filesystem::rename("../records/transaction_database/temp.csv", file_path);
 
     file.close();
 }
@@ -181,6 +179,41 @@ Structs::Node* Client::deposit(Structs::Node *curr){
         system("cls");
     } while(cont);
 
+    std::string date;
+
+    std::cout << "Enter date(MM/DD/YYYY): ";
+    std::getline(std::cin, date);
+
+    Structs::Transaction* temp;
+    temp->date = date;
+    temp->amount = amount;
+    temp->new_balance = curr->data.getBalance();
+    temp->details = "Deposit";
+    temp->next = NULL;
+
+    if(curr->transaction == NULL){
+        temp->transaction_num = 1;
+
+        std::stringstream id;
+        id << "DEPO" << temp->transaction_num;
+        std::string new_id = id.str();
+        temp->transaction_id = new_id;
+
+        curr->transaction = temp;
+    } else{
+        Structs::Transaction* current_trans = curr->transaction;
+        while(current_trans->next != NULL) current_trans = current_trans->next;
+
+        temp->transaction_num = current_trans->transaction_num + 1;
+
+        std::stringstream id;
+        id << "DEPO" << temp->transaction_num;
+        std::string new_id = id.str();
+        temp->transaction_id = new_id;
+
+        current_trans->next = temp;
+    }
+
     General::updateFile(curr);
 
     Client::updateTransactionFile(curr);
@@ -214,6 +247,41 @@ Structs::Node* Client::withdraw(Structs::Node *curr){
         General::wait(2);
         system("cls");
     } while(cont);
+
+    std::string date;
+
+    std::cout << "Enter date: ";
+    std::getline(std::cin, date);
+
+    Structs::Transaction* temp;
+    temp->date = date;
+    temp->amount = amount;
+    temp->new_balance = curr->data.getBalance();
+    temp->details = "Withdraw";
+    temp->next = NULL;
+
+    if(curr->transaction == NULL){
+        temp->transaction_num = 1;
+
+        std::stringstream id;
+        id << "WTDR" << temp->transaction_num;
+        std::string new_id = id.str();
+        temp->transaction_id = new_id;
+
+        curr->transaction = temp;
+    } else{
+        Structs::Transaction* current_trans = curr->transaction;
+        while(current_trans->next != NULL) current_trans = current_trans->next;
+
+        temp->transaction_num = current_trans->transaction_num + 1;
+
+        std::stringstream id;
+        id << "WTDR" << temp->transaction_num;
+        std::string new_id = id.str();
+        temp->transaction_id = new_id;
+
+        current_trans->next = temp;
+    }
 
     General::updateFile(curr);
 
