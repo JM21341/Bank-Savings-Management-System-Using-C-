@@ -25,6 +25,11 @@ Structs::Transaction* General::readTransactionFromRecord(Structs::Node *curr){
 
     std::ifstream file(file_path);
 
+    if(!file.is_open()){
+        std::cerr << "Transaction file for " << curr->data.getUsername() << "did not open.";
+        return NULL;
+    }
+
     while(std::getline(file, line)){
         Structs::Transaction* temp = new Structs::Transaction();
         temp->next = NULL;
@@ -82,8 +87,6 @@ Structs::Node* General::readDataFromFile(Structs::Node* head){
         return NULL;
     }
 
-    std::cout << "user.csv opened successfully." << std::endl;
-
     while(std::getline(file, line)){
         std::stringstream ss(line);
         std::string ID, username, password, role;
@@ -93,12 +96,6 @@ Structs::Node* General::readDataFromFile(Structs::Node* head){
         std::getline(ss, username, ',');
         std::getline(ss, password, ',');
         std::getline(ss, role, ',');
-
-        if(!ID.empty() && !username.empty() && !password.empty() && !role.empty()){
-            std::cout << "Successfully read from login details file." << std::endl;
-        } else{
-            std::cout << "Data not read from login details file." << std::endl;
-        }
 
         Structs::Node* temp = new Structs::Node(); // creates a temp node
         temp->next = NULL; // more safer when it is put here than when it is put before the loop goes back
@@ -121,8 +118,6 @@ Structs::Node* General::readDataFromFile(Structs::Node* head){
             std::cerr << "Something went wrong. Path does not exist for the user " << username << ".";
             break;
         }
-
-        std::cout << "Successfully opened user info file." << std::endl;
 
         // for user personal details
         while(std::getline(file2, line2)){
