@@ -299,12 +299,40 @@ void Client::viewTransactionHistory(Structs::Node* curr){
 
     while(curr->transaction != NULL){
         std::cout << "----------------------------------------" << std::endl; 
-        std::cout << "Transaction Number:  " << curr->transaction->transaction_num << std::endl; 
-        std::cout << "Transaction ID:      " << curr->transaction->transaction_id << std::endl; 
-        std::cout << "Transaction Details: " << curr->transaction->details << std::endl; 
-        std::cout << "Transaction Date:    " << curr->transaction->date << std::endl; 
-        std::cout << "Transaction Amount:  " << ((curr->transaction->details == "Deposit") ? '+' : '-') << curr->transaction->amount << std::endl; 
-        std::cout << "Balance:             " << curr->transaction->transaction_num << std::endl; 
+        std::cout << "Transaction Number   :  " << curr->transaction->transaction_num << std::endl; 
+        std::cout << "Transaction ID       :  " << curr->transaction->transaction_id << std::endl; 
+        std::cout << "Transaction Details  :  " << curr->transaction->details << std::endl; 
+        std::cout << "Transaction Date     :  " << curr->transaction->date << std::endl; 
+        std::cout << "Transaction Amount   :  " << ((curr->transaction->details == "Deposit") ? '+' : '-') << curr->transaction->amount << std::endl; 
+        std::cout << "Balance              :  " << curr->transaction->transaction_num << std::endl; 
         std::cout << "----------------------------------------" << std::endl; 
     }
+}
+
+void viewPersonalInfo(Structs::Node* curr){
+    std::cout << "========== BANK ==========" << std::endl;
+    std::cout << "Hello, " << curr->data.getUsername() << ". This is your personal info." << std::endl;
+
+    std::cout << "--------------------------------------------------------" << std::endl; 
+    std::cout << "USER INFO: " << std::endl;
+    std::cout << "Username    :  " << curr->data.getUsername() << std::endl;
+    std::cout << "Password    :  " << curr->data.getPassword() << std::endl;
+    std::cout << "User ID     :  " << curr->data.getID() << std::endl;
+
+    if(curr->data.getRole() == "Admin"){
+        std::cout << "You are an ADMIN." << std::endl;
+    }
+
+    std::cout << "--------------------------------------------------------" << std::endl; 
+
+    std::cout << "--------------------------------------------------------" << std::endl; 
+    std::cout << "PERSONAL INFO: " << std::endl;
+    std::cout << "Name         :  " << curr->data.getName() << std::endl;
+    std::cout << "Age          :  " << curr->data.getAge() << std::endl;
+    std::cout << "Birthdate    :  " << curr->data.getBirthdate() << std::endl;
+    std::cout << "Contact #    :  " << curr->data.getBirthdate() << std::endl;
+    std::cout << "Email        :  " << curr->data.getBirthdate() << std::endl;
+    std::cout << "Home Address :  " << curr->data.getBirthdate() << std::endl;
+    std::cout << "TIN Number   :  " << curr->data.getBirthdate() << std::endl;
+    std::cout << "--------------------------------------------------------" << std::endl; 
 }

@@ -36,7 +36,7 @@ namespace Classes{
             std::string getRole() const { return role; } // retrieves role(admin/client)
             double getBalance() const{ return balance; } // retrieves balance
 
-            // for replacement
+            // for replacement && viewing of personal info
             std::string getName() const{ return full_name; } 
             int getAge() const{ return age; } 
             std::string getBirthdate() const{ return birthdate; } 
@@ -44,6 +44,7 @@ namespace Classes{
             std::string getContactNum() const{ return contact_number; } 
             std::string getAddress() const{ return home_address; } 
             std::string getTIN() const{ return TIN_number; } 
+            std::string getID() const{ return ID; }
 
             // setters
             void setLoginDetails(std::string& username, std::string& password, std::string role, std::string& user_id){
