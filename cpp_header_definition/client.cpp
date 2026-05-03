@@ -317,7 +317,7 @@ void Client::viewTransactionHistory(Structs::Node* curr){
     }
 }
 
-void viewPersonalInfo(Structs::Node* curr){
+void Client::viewPersonalInfo(Structs::Node* curr){
     // output of user details and personal details
     std::cout << "========== BANK ==========" << std::endl;
     std::cout << "Hello, " << curr->data.getUsername() << ". This is your personal info." << std::endl; 
@@ -346,7 +346,7 @@ void viewPersonalInfo(Structs::Node* curr){
     std::cout << "--------------------------------------------------------" << std::endl; 
 }
 
-Structs::Node* editPersonalInfo(Structs::Node* curr){
+Structs::Node* Client::editPersonalInfo(Structs::Node* curr){
     std::string name, email, contact_num, age, birthdate, address; // variables to store the data into
     const std::string TIN = curr->data.getTIN(); // retrieves the TIN number and assigns it to a constant variable
 

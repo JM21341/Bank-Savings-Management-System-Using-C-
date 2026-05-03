@@ -211,7 +211,7 @@ bool General::askToContinue(){
     } while(cont);
 }
 
-void updateFile(Structs::Node* curr){
+void General::updateFile(Structs::Node* curr){
     std::stringstream filename; // for filename
     filename << "../records/user_database/" << curr->data.getUsername() << ".txt"; // sets the filename to the directory of the specific transaction database
 

@@ -1,8 +1,8 @@
 #include <iostream>
-#include "header/structs.h"
-#include "header/general.h"
+#include "../header/structs.h"
+#include "../header/general.h"
 // #include "header/admin.h"
-#include "header/client.h"
+#include "../header/client.h"
 
 int main(){
     bool cont = true; // for the loop
