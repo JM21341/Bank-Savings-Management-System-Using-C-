@@ -217,7 +217,7 @@ void updateFile(Structs::Node* curr){
 
     std::string file_path = filename.str(); // converts the variable from a stringstream to string
 
-    std::ofstream file("../records/transaction_database/temp.txt"); // opens the directory
+    std::ofstream file("../records/user_database/temp.txt"); // opens the directory
 
     if(!file.is_open()){
         std::cerr << "File was not created in updateFile" << std::endl;
@@ -239,7 +239,7 @@ void updateFile(Structs::Node* curr){
     }
 
     std::filesystem::remove(file_path);
-    std::filesystem::rename("../records/transaction_database/temp.txt", file_path);
+    std::filesystem::rename("../records/user_database/temp.txt", file_path);
 
     file.close();
 }

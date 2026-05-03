@@ -4,7 +4,9 @@
 #include "structs.h"
 
 namespace Client{
+    // General
     bool clientControls(Structs::Node* curr);
+    void updateTransactionFile(Structs::Node* curr);
 
     // Transaction
     void checkSavings(Structs::Node* curr);

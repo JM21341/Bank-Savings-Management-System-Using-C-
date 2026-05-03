@@ -1,8 +1,44 @@
 #include <iostream>
 #include <cstdlib> // for system("cls")
+#include <filesystem> // for rename() and delete()
+#include <fstream> // for ofstream
+#include <sstream> // for stringstream
 
 #include "../header/client.h"
 #include "../header/general.h"
+
+void Client::updateTransactionFile(Structs::Node* curr){
+    std::stringstream filename; // for filename
+    filename << "../records/transaction_database/" << curr->data.getUsername() << ".txt"; // sets the filename to the directory of the specific transaction database
+
+    std::string file_path = filename.str(); // converts the variable from a stringstream to string
+
+    std::ofstream file("../records/transaction_database/temp.txt"); // opens the directory
+
+    if(!file.is_open()){
+        std::cerr << "File was not created in updateFile" << std::endl;
+        return;
+    }
+
+    while(curr != NULL){
+        file << curr->data.getName() << "," << 
+            curr->data.getAge() << "," << 
+            curr->data.getBirthdate() << "," << 
+            curr->data.getBalance() << "," << 
+            curr->data.getContactNum() << "," << 
+            curr->data.getEmail() << "," << 
+            curr->data.getAddress() << "," << 
+            curr->data.getTIN() << "," << 
+            std::endl;
+
+        curr = curr->next;
+    }
+
+    std::filesystem::remove(file_path);
+    std::filesystem::rename("../records/transaction_database/temp.txt", file_path);
+
+    file.close();
+}
 
 bool Client::clientControls(Structs::Node *curr){
     int dec = 0, dec2 = 0;
@@ -147,6 +183,8 @@ Structs::Node* Client::deposit(Structs::Node *curr){
 
     General::updateFile(curr);
 
+    Client::updateTransactionFile(curr);
+
     return curr;
 }
 
@@ -178,6 +216,8 @@ Structs::Node* Client::withdraw(Structs::Node *curr){
     } while(cont);
 
     General::updateFile(curr);
+
+    Client::updateTransactionFile(curr);
 
     return curr;
 }
