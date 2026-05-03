@@ -77,13 +77,15 @@ Structs::Node* General::readDataFromFile(Structs::Node* head){
 
     std::string line, line2;
 
-    std::ifstream file("../records/user.csv"); // a bit dangerous of a directory
+    std::ifstream file("C:\\C++ Projects\\Projects\\Console-Based_Bank_Savings_Management_System\\records\\user.csv"); // a bit dangerous of a directory
 
     // checks if file did not open
     if(!file.is_open()){
-        std::cerr << "File did not open in readDataFromFile." << std::endl;
+        std::cerr << "File user.csv did not open in readDataFromFile." << std::endl;
         return NULL;
     }
+
+    std::cout << "user.csv opened successfully." << std::endl;
 
     while(std::getline(file, line)){
         std::stringstream ss(line);
@@ -95,6 +97,12 @@ Structs::Node* General::readDataFromFile(Structs::Node* head){
         std::getline(ss, password, ',');
         std::getline(ss, role, ',');
 
+        if(!ID.empty() && !username.empty() && !password.empty() && !role.empty()){
+            std::cout << "Successfully read from login details file." << std::endl;
+        } else{
+            std::cout << "Data not read from login details file." << std::endl;
+        }
+
         Structs::Node* temp = new Structs::Node(); // creates a temp node
         temp->next = NULL; // more safer when it is put here than when it is put before the loop goes back
 
@@ -102,7 +110,7 @@ Structs::Node* General::readDataFromFile(Structs::Node* head){
 
         // creates a second file
         std::stringstream filename; // for setting the filename
-        filename << "../records/user_database/" << username << ".txt";
+        filename << "C:\\C++ Projects\\Projects\\Console-Based_Bank_Savings_Management_System\\records\\user_database\\" << username << ".txt";
         
         std::string final_path = filename.str(); // type casts from string stream to an actual string
         // variables the details will be stored into
@@ -116,6 +124,8 @@ Structs::Node* General::readDataFromFile(Structs::Node* head){
             std::cerr << "Something went wrong. Path does not exist for the user " << username << ".";
             break;
         }
+
+        std::cout << "Successfully opened user info file." << std::endl;
 
         // for user personal details
         while(std::getline(file2, line2)){
