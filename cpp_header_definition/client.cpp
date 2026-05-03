@@ -336,3 +336,52 @@ void viewPersonalInfo(Structs::Node* curr){
     std::cout << "TIN Number   :  " << curr->data.getBirthdate() << std::endl;
     std::cout << "--------------------------------------------------------" << std::endl; 
 }
+
+Structs::Node* editPersonalInfo(Structs::Node* curr){
+    std::string name, email, contact_num, age, birthdate, address;
+    const std::string TIN = curr->data.getTIN();
+    std::cout << "========== BANK ==========" << std::endl;
+    std::cout << "Hello, " << curr->data.getUsername() << "!" << std::endl;
+
+    std::cout << std::endl;
+
+    std::cout << "INSTRUCTION: Enter the same info if you don't want to change that specific field." << std::endl << std::endl;
+
+    std::cout << "Enter new name: ";
+    std::getline(std::cin, name);
+
+    std::cout << std::endl;
+
+    std::cout << "Enter new age: ";
+    std::getline(std::cin, age);
+
+    std::cout << std::endl;
+
+    std::cout << "Enter new birthdate: ";
+    std::getline(std::cin, birthdate);
+
+    std::cout << std::endl;
+
+    std::cout << "Enter new email: ";
+    std::getline(std::cin, email);
+
+    std::cout << std::endl;
+
+    std::cout << "Enter new contact number: ";
+    std::getline(std::cin, contact_num);
+
+    std::cout << std::endl;
+
+    std::cout << "Enter new address: ";
+    std::getline(std::cin, address);
+
+    std::cout << std::endl;
+
+    int new_age = std::stoi(age);
+
+    curr->data.setPersonalDetails(name, new_age, birthdate, email, contact_num, address, TIN);
+
+    General::updateFile(curr);
+
+    return curr;
+}

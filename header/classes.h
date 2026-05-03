@@ -58,7 +58,7 @@ namespace Classes{
                 this->balance = balance; 
             }
 
-            void setPersonalDetails(std::string& name, int& age, std::string& birthdate, std::string& email, std::string& contact_number, std::string& home_address, std::string& TIN){
+            void setPersonalDetails(std::string& name, int& age, std::string& birthdate, std::string& email, std::string& contact_number, std::string& home_address, std::string TIN){
                 full_name = name;
                 TIN_number = TIN;
                 this->age = age;
