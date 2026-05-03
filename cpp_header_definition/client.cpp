@@ -35,8 +35,8 @@ void Client::updateTransactionFile(Structs::Node* curr){
         curr->transaction = curr->transaction->next;
     }
 
-    std::filesystem::remove(file_path);
-    std::filesystem::rename("../records/transaction_database/temp.csv", file_path);
+    std::filesystem::remove(file_path); // deletes the original file
+    std::filesystem::rename("../records/transaction_database/temp.csv", file_path); // renames temp file to the right file
 
     file.close();
 }
@@ -178,8 +178,8 @@ Structs::Node* Client::deposit(Structs::Node *curr){
             std::cout << "Invalid amount." << std::endl;
         }
 
-        General::wait(2);
-        system("cls");
+        General::wait(2); // time delay
+        system("cls"); // clears terminal
     } while(cont);
 
     std::string date;
@@ -225,30 +225,35 @@ Structs::Node* Client::deposit(Structs::Node *curr){
 }
 
 Structs::Node* Client::withdraw(Structs::Node *curr){
-    double amount = 0;
+    double amount = 0; // storage for the desired amount to withdraw
     bool cont = true;
-    int i = 0;
+    int i = 0; // for limit of loop
 
     do{
         std::cout << "========== BANK ==========" << std::endl;
         std::cout << "Hello, " << curr->data.getUsername() << std::endl << std::endl;
 
-        std::cout << "Input 0 if you want to go back" << std::endl << std::endl;
+        std::cout << "Input 0 if you want to go back" << std::endl << std::endl; // they can input 0 to break the loop
         std::cout << "Enter withdraw amount: " ;
         std::cin >> amount;
 
         if(amount > 0 && amount <= curr->data.getBalance()){
-            curr->data.modifyBalance(amount, "Withdraw");
-            cont = false;
-        } else if(i <= 5 && amount > curr->data.getBalance()){
-            std::cout << "Invalid amount. Not enough balance." << std::endl;
+            curr->data.modifyBalance(amount, "Withdraw"); // modifies balance
+            cont = false; // so the loop ends
+        } 
+        // checks if the amount is correct and valid
+        else if(i <= 5 && amount > curr->data.getBalance()){
+            std::cout << "Invalid amount. Not enough balance." << std::endl; // error message
         } else if(amount == 0) break;
+        // error message for when the input is invalid
         else{
             std::cout << "Invalid input! Please try again." << std::endl;
         }
 
-        General::wait(2);
-        system("cls");
+        General::wait(2); // time delay
+        system("cls"); // clears terminal
+
+        i++;
     } while(cont);
 
     std::string date;
