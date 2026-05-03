@@ -11,7 +11,7 @@
 #include "../header/structs.h"
 
 void General::wait(int n){
-    std::this_thread::sleep_for(std::chrono::seconds(n));
+    std::this_thread::sleep_for(std::chrono::seconds(n)); // seconds delay
 }
 
 Structs::Transaction* General::readTransactionFromRecord(Structs::Node *curr){

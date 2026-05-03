@@ -32,7 +32,7 @@ void Client::updateTransactionFile(Structs::Node* curr){
             curr->transaction->new_balance << "," << 
             std::endl;
 
-        curr->transaction = curr->transaction->next;
+        curr->transaction = curr->transaction->next; // moves to the next node
     }
 
     std::filesystem::remove(file_path); // deletes the original file
@@ -44,6 +44,7 @@ void Client::updateTransactionFile(Structs::Node* curr){
 bool Client::clientControls(Structs::Node *curr){
     int dec = 0, dec2 = 0;
     bool cont = true, exit = false, logout = false;
+
     do{
         std::cout << "========== BANK ==========" << std::endl;
         std::cout << "[1] Transaction" << std::endl;
@@ -154,8 +155,8 @@ bool Client::clientControls(Structs::Node *curr){
 
 void Client::checkSavings(Structs::Node* curr){
     std::cout << "========== BANK ==========" << std::endl;
-    std::cout << "Hello, " << curr->data.getUsername() << std::endl;
-    std::cout << "This is your current balance: " << curr->data.getBalance() << std::endl;
+    std::cout << "Hello, " << curr->data.getUsername() << std::endl; // access username through a getter
+    std::cout << "This is your current balance: " << curr->data.getBalance() << std::endl; // access balance through a getter
 
     return;
 }
@@ -303,6 +304,7 @@ void Client::viewTransactionHistory(Structs::Node* curr){
     std::cout << "========== BANK ==========" << std::endl;
     std::cout << "Hello, " << curr->data.getUsername() << ". This is your transaction history." << std::endl;
 
+    // traverses through each node of transaction
     while(curr->transaction != NULL){
         std::cout << "----------------------------------------" << std::endl; 
         std::cout << "Transaction Number   :  " << curr->transaction->transaction_num << std::endl; 
@@ -316,8 +318,9 @@ void Client::viewTransactionHistory(Structs::Node* curr){
 }
 
 void viewPersonalInfo(Structs::Node* curr){
+    // output of user details and personal details
     std::cout << "========== BANK ==========" << std::endl;
-    std::cout << "Hello, " << curr->data.getUsername() << ". This is your personal info." << std::endl;
+    std::cout << "Hello, " << curr->data.getUsername() << ". This is your personal info." << std::endl; 
 
     std::cout << "--------------------------------------------------------" << std::endl; 
     std::cout << "USER INFO: " << std::endl;
@@ -344,50 +347,54 @@ void viewPersonalInfo(Structs::Node* curr){
 }
 
 Structs::Node* editPersonalInfo(Structs::Node* curr){
-    std::string name, email, contact_num, age, birthdate, address;
-    const std::string TIN = curr->data.getTIN();
+    std::string name, email, contact_num, age, birthdate, address; // variables to store the data into
+    const std::string TIN = curr->data.getTIN(); // retrieves the TIN number and assigns it to a constant variable
+
     std::cout << "========== BANK ==========" << std::endl;
     std::cout << "Hello, " << curr->data.getUsername() << "!" << std::endl;
 
     std::cout << std::endl;
 
-    std::cout << "INSTRUCTION: Enter the same info if you don't want to change that specific field." << std::endl << std::endl;
+    std::cout << "INSTRUCTION: Enter the same info if you don't want to change that specific field." << std::endl << std::endl; // instructio nbefore user input
+    // important because data might change
 
-    std::cout << "Enter new name: ";
+    // USER INPUT
+
+    std::cout << "Enter new name: "; // full name
     std::getline(std::cin, name);
 
     std::cout << std::endl;
 
-    std::cout << "Enter new age: ";
+    std::cout << "Enter new age: "; // age
     std::getline(std::cin, age);
 
     std::cout << std::endl;
 
-    std::cout << "Enter new birthdate: ";
+    std::cout << "Enter new birthdate: "; // birthdate
     std::getline(std::cin, birthdate);
 
     std::cout << std::endl;
 
-    std::cout << "Enter new email: ";
+    std::cout << "Enter new email: "; // email
     std::getline(std::cin, email);
 
     std::cout << std::endl;
 
-    std::cout << "Enter new contact number: ";
+    std::cout << "Enter new contact number: "; // contact number
     std::getline(std::cin, contact_num);
 
     std::cout << std::endl;
 
-    std::cout << "Enter new address: ";
+    std::cout << "Enter new address: "; // home address
     std::getline(std::cin, address);
 
     std::cout << std::endl;
 
-    int new_age = std::stoi(age);
+    int new_age = std::stoi(age); // converts string to integer for age
 
-    curr->data.setPersonalDetails(name, new_age, birthdate, email, contact_num, address, TIN);
+    curr->data.setPersonalDetails(name, new_age, birthdate, email, contact_num, address, TIN); // madifies personal details
 
-    General::updateFile(curr);
+    General::updateFile(curr); // runs the update file
 
     return curr;
 }
