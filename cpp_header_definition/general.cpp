@@ -13,6 +13,57 @@ void General::wait(int n){
     std::this_thread::sleep_for(std::chrono::seconds(n));
 }
 
+Structs::Transaction* General::readTransactionFromRecord(Structs::Node *curr){
+    Structs::Transaction* transaction_head = NULL; // creates a head for tranasction
+
+    std::stringstream filename; // for filename
+    filename << "../records/transaction_database/" << curr->data.getUsername() << ".csv"; // sets the filename to the directory of the specific transaction database
+
+    std::string file_path = filename.str(); // converts the variable from a stringstream to string
+    std::string line; // for stirubg each line
+
+    std::ifstream file(file_path);
+
+    while(std::getline(file, line)){
+        Structs::Transaction* temp = new Structs::Transaction();
+        temp->next = NULL;
+
+        std::stringstream ss(line); // for storing the value in each line, with a delimiter
+        std::string transaction_num, transaction_id, transaction_details, transaction_date, amount, new_balance; // variables to store the values
+
+        // storing of values from the file t the variables above
+        std::getline(ss, transaction_num, ',');
+        std::getline(ss, transaction_id, ',');
+        std::getline(ss, transaction_details, ',');
+        std::getline(ss, transaction_date, ',');
+        std::getline(ss, amount, ',');
+        std::getline(ss, new_balance, ',');
+
+        // storing value to the transaction struct's variables
+        temp->transaction_num = std::stoi(transaction_num); // converts transaction_num from string to integer
+        temp->amount = std::stod(amount); // converts amount from string to double
+        temp->new_balance = std::stod(new_balance); // converts new_balance from string to double
+        temp->transaction_id = transaction_id;
+        temp->details = transaction_details;
+        temp->date = transaction_date;
+
+        // assigning of transaction_head
+
+        if(transaction_head == NULL){
+            transaction_head = temp; // if the list is empty, assigns head to the first temp
+        } else{
+            // if not empty,
+            Structs::Transaction* point = transaction_head; // creates a point from the head
+            while(point->next != NULL) point = point->next; // traverses through the lists until it finds a node with no link
+            point->next = temp; // sets the link of that node to the temp
+        }
+
+        // will run until the EOF (end of file)
+    }
+
+    return transaction_head; 
+}
+
 Structs::Node* General::readDataFromFile(Structs::Node* head){
     if(head != NULL){
         std::cout << "Something went wrong. Data already pre-exists in the program before running." << std::endl;
@@ -46,7 +97,7 @@ Structs::Node* General::readDataFromFile(Structs::Node* head){
 
         // creates a second file
         std::stringstream filename; // for setting the filename
-        filename << "../records/user_data/" << username << ".txt";
+        filename << "../records/user_database/" << username << ".txt";
         
         std::string final_path = filename.str(); // type casts from string stream to an actual string
         // variables the details will be stored into
@@ -85,6 +136,8 @@ Structs::Node* General::readDataFromFile(Structs::Node* head){
         temp->data.setBalance(balance); // sets the balance for that user
         // sets all the personal details of the user
         temp->data.setPersonalDetails(full_name, age, birthdate, email, contact_number, home_address, TIN_number);
+
+        temp->transaction = readTransactionFromRecord(temp);
 
         // linking of the list
         if(head == NULL){

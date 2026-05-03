@@ -9,6 +9,7 @@ namespace General{
     Structs::Node* login(Structs::Node* head); // returns the user role
     void wait(int seconds);
     bool askToContinue();
+    Structs::Transaction* readTransactionFromRecord(Structs::Node* curr);
 }
 
 #endif

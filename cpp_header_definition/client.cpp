@@ -125,10 +125,10 @@ Structs::Node* Client::deposit(Structs::Node *curr){
     double amount = 0;
     bool cont = true;
 
-    std::cout << "========== BANK ==========" << std::endl;
-    std::cout << "Hello, " << curr->data.getUsername() << std::endl << std::endl;
-
     do{
+        std::cout << "========== BANK ==========" << std::endl;
+        std::cout << "Hello, " << curr->data.getUsername() << std::endl << std::endl;
+        
         std::cout << "Enter deposit amount: " ;
         std::cin >> amount;
 

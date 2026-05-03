@@ -8,11 +8,13 @@ namespace Structs{
     struct Transaction{
         int transaction_num;
         std::string transaction_id, details, date;
+        double amount, new_balance;
+        Transaction* next;
     };
 
     struct Node{
         Classes::User data;
-        Transaction transaction;
+        Transaction* transaction;
         Node* next;
     };
 }
