@@ -166,16 +166,17 @@ Structs::Node* Client::deposit(Structs::Node *curr){
 
     do{
         std::cout << "========== BANK ==========" << std::endl;
-        std::cout << "Hello, " << curr->data.getUsername() << std::endl << std::endl;
+        std::cout << "Hello, " << curr->data.getUsername() << std::endl << std::endl; // retrieves username
 
+        // user input for amount
         std::cout << "Enter deposit amount: " ;
         std::cin >> amount;
 
         if(amount >= 0){
-            curr->data.modifyBalance(amount, "Deposit");
-            cont = false;
+            curr->data.modifyBalance(amount, "Deposit"); // modifies balance
+            cont = false; // stops loop
         } else{
-            std::cout << "Invalid amount." << std::endl;
+            std::cout << "Invalid amount." << std::endl; // error message for an invalid amount
         }
 
         General::wait(2); // time delay
