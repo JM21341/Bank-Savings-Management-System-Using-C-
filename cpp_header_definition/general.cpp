@@ -223,20 +223,16 @@ void updateFile(Structs::Node* curr){
         std::cerr << "File was not created in updateFile" << std::endl;
         return;
     }
-
-    while(curr != NULL){
-        file << curr->data.getName() << "," << 
-            curr->data.getAge() << "," << 
-            curr->data.getBirthdate() << "," << 
-            curr->data.getBalance() << "," << 
-            curr->data.getContactNum() << "," << 
-            curr->data.getEmail() << "," << 
-            curr->data.getAddress() << "," << 
-            curr->data.getTIN() << "," << 
-            std::endl;
-
-        curr = curr->next;
-    }
+    
+    file << curr->data.getName() << "," << 
+        curr->data.getAge() << "," << 
+        curr->data.getBirthdate() << "," << 
+        curr->data.getBalance() << "," << 
+        curr->data.getContactNum() << "," << 
+        curr->data.getEmail() << "," << 
+        curr->data.getAddress() << "," << 
+        curr->data.getTIN() << "," << 
+        std::endl;
 
     std::filesystem::remove(file_path);
     std::filesystem::rename("../records/user_database/temp.txt", file_path);

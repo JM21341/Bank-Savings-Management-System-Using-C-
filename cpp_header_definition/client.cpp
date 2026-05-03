@@ -15,21 +15,24 @@ void Client::updateTransactionFile(Structs::Node* curr){
 
     std::ofstream file("../records/transaction_database/temp.csv"); // opens the directory
 
+    // checks if file is open
     if(!file.is_open()){
         std::cerr << "File was not created in updateFile" << std::endl;
         return;
     }
 
-    while(curr != NULL){
+    // writes to that file until the current transaction in the history is NULL
+    // traverses through each node and writes the data from it to the file
+    while(curr->transaction != NULL){
         file << curr->transaction->transaction_num << "," << 
             curr->transaction->transaction_id << "," << 
-            "curr->transaction->details" << "," << 
+            curr->transaction->details << "," << 
             curr->transaction->date << "," << 
             curr->transaction->amount << "," << 
             curr->transaction->new_balance << "," << 
             std::endl;
 
-        curr = curr->next;
+        curr->transaction = curr->transaction->next;
     }
 
     std::filesystem::remove(file_path);
