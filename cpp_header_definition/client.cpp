@@ -53,7 +53,7 @@ bool Client::clientControls(Structs::Node *curr){
         std::cout << "[4] Log Out" << std::endl;
         std::cout << "[5] Exit" << std::endl;
 
-        std::cout << "Select an item: " << std::endl;
+        std::cout << "Select an item: ";
         std::cin >> dec;
         std::cout << std::endl << std::endl;
 
@@ -69,7 +69,7 @@ bool Client::clientControls(Structs::Node *curr){
                 std::cout << "[4] View Transaction History" << std::endl;
                 std::cout << "[5] Back" << std::endl;
 
-                std::cout << "Select an item: " << std::endl;
+                std::cout << "Select an item: ";
                 std::cin >> dec2;
                 std::cout << std::endl << std::endl;
 
@@ -106,7 +106,7 @@ bool Client::clientControls(Structs::Node *curr){
                 std::cout << "[2] Edit Personal Info" << std::endl;
                 std::cout << "[3] Back" << std::endl;
 
-                std::cout << "Select an item: " << std::endl;
+                std::cout << "Select an item: ";
                 std::cin >> dec2;
                 std::cout << std::endl << std::endl;
 
