@@ -288,7 +288,7 @@ Structs::Node* Client::withdraw(Structs::Node *curr){
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::getline(std::cin, date);
 
-    Structs::Transaction* temp;
+    Structs::Transaction* temp = new Structs::Transaction();
     temp->date = date;
     temp->amount = amount;
     temp->new_balance = curr->data.getBalance();
