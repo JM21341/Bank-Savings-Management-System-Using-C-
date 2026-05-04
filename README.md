@@ -180,7 +180,8 @@ Note: This prerequisites are based from what I have and used. This program may o
 
 ### c_cpp_properties.json:
 
-JSON\n{
+```
+{
     "configurations": [
         {
             "name": "Win32",
@@ -201,4 +202,5 @@ JSON\n{
         }
     ],
     "version": 4
-}\n
+}
+```
