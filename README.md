@@ -367,3 +367,69 @@ while(std::getline(file, line)){
 
         temp->data.setLoginDetails(username, password, role, ID);
 ```
+
+We then create another file for the personal details. Same thing for error handling and reading each line.
+
+```
+        std::stringstream filename; 
+        filename << "C:\\C++ Projects\\Projects\\Console-Based_Bank_Savings_Management_System\\records\\user_database\\" << username << ".txt";
+        
+        std::string final_path = filename.str(); 
+        std::string full_name, birthdate, email, contact_number, home_address, TIN_number, bank_number;
+        std::string age_str, balance_str;
+        
+        std::ifstream file2(final_path);
+
+        if(!file2.is_open()){
+            std::cerr << "Something went wrong. Path does not exist for the user " << username << ".";
+            break;
+        }
+
+        while(std::getline(file2, line2)){
+            std::stringstream ss2(line2);
+
+            std::getline(ss2, full_name, ',');
+            std::getline(ss2, age_str, ',');
+            std::getline(ss2, birthdate, ',');
+            std::getline(ss2, balance_str, ',');
+            std::getline(ss2, contact_number, ',');
+            std::getline(ss2, email, ',');
+            std::getline(ss2, home_address, ',');
+            std::getline(ss2, TIN_number, ',');
+        }
+```
+
+We use a ternary operator to check for the values. It checks whether the string is empty. If yes, the default value is 0 balance. If not, it converts the data from the file into their own respective data types.
+
+```
+        int age = age_str.empty() ? 0 : std::stoi(age_str);
+        double balance = balance_str.empty() ? 0.0 : std::stod(balance_str); 
+```
+
+After all that, we then close the second file.
+
+        ``` file2.close(); ```
+
+We then assign the attributes of the class values. The values will be from the variables that was used as a storage when reading the file.
+
+```
+        temp->data.setBalance(balance);
+        temp->data.setPersonalDetails(full_name, age, birthdate, email, contact_number, home_address, TIN_number);
+```
+
+Same thing goes for the readTransactionFromRecord(). I just made it so that the code doesn't get more longer.
+
+``` temp->transaction = readTransactionFromRecord(temp); ```
+
+After that, we link the head to the temporary node OR find a node who has an empty link and set its link to the temporary node.
+
+```
+        if(head == NULL){
+            head = temp; // sets the head ptr to the temp
+        } else{
+            Structs::Node* curr = head; // creates a temp ptr which traverses through each node
+            while(curr->next != NULL) curr = curr->next; // search for a node which doesn't have a next link
+            curr->next = temp; // sets the link of that node to the temp
+        }
+```
+
