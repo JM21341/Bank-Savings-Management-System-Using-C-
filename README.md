@@ -204,3 +204,106 @@ Note: This prerequisites are based from what I have and used. This program may o
     "version": 4
 }
 ```
+
+### tasks.json:
+
+```
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "C/C++: clang++ build active file",
+            "command": "C:/msys64/ucrt64/bin/clang++.exe",
+            "args": [
+                "-std=c++17",
+                "-g",
+                "-static",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": ["$gcc"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "C/C++: build and run",
+            "type": "shell",
+            "command": "/ucrt64/bin/clang++ -std=c++17 -static -g '${fileDirname}'/*.cpp -o '${fileDirname}/${fileBasenameNoExtension}.exe' && '${fileDirname}/${fileBasenameNoExtension}.exe'",
+            "options": {
+                "cwd": "${fileDirname}",
+                "shell": {
+                    "executable": "C:\\msys64\\usr\\bin\\bash.exe",
+                    "args": ["-l", "-c"]
+                }
+            },
+            "problemMatcher": ["$gcc"],
+            "group": "build"
+        }
+    ]
+}
+```
+
+### launch.json:
+
+```
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "C/C++: clang++ build and run",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\msys64\\ucrt64\\bin\\gdb.exe",
+            "miDebuggerArgs": "--interpreter=mi2",
+            "preLaunchTask": "C/C++: clang++ build active file"
+        }
+    ]
+}
+```
+
+### settings.json:
+
+```
+{
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "clangd.path": "C:\\msys64\\ucrt64\\bin\\clangd.exe",
+    "files.associations": {
+        "*.h": "cpp"
+    },
+}
+```
+
+### compile_flags.txt
+
+#### 1. Go to the global directory 
+##### Example: C:\C++-Projects
+
+#### 2. Create compile_flags.txt
+
+#### 3. Enter the following:
+
+```
+-std=c++17
+-x
+c++
+-IC:/msys64/ucrt64/include/c++/15.2.0
+-IC:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32
+-IC:/msys64/ucrt64/include
+```
+
+#### 4. Save changes
+
