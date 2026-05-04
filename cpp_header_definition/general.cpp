@@ -214,7 +214,7 @@ bool General::askToContinue(){
 
 void General::updateFile(Structs::Node* curr){
     std::stringstream filename; // for filename
-    filename << "C:\\C++ Projects\\Projects\\Console-Based_Bank_Savings_Management_System\\records\\user_database" << curr->data.getUsername() << ".txt"; // sets the filename to the directory of the specific transaction database
+    filename << "C:\\C++ Projects\\Projects\\Console-Based_Bank_Savings_Management_System\\records\\user_database\\" << curr->data.getUsername() << ".txt"; // sets the filename to the directory of the specific transaction database
 
     std::string file_path = filename.str(); // converts the variable from a stringstream to string
 
