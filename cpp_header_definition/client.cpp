@@ -9,12 +9,11 @@
 #include "../header/general.h"
 
 void Client::updateTransactionFile(Structs::Node* curr){
-    std::stringstream filename; // for filename
-    filename << "../records/transaction_database/" << curr->data.getUsername() << ".csv"; // sets the filename to the directory of the specific transaction database
+    std::filesystem::path dir = "C:\\C++ Projects\\Projects\\Console-Based_Bank_Savings_Management_System\\records\\transaction_database";
+    std::filesystem::path file_path = dir / (curr->data.getUsername() + ".csv");
+    std::filesystem::path temp_path = dir / "temp.csv";
 
-    std::string file_path = filename.str(); // converts the variable from a stringstream to string
-
-    std::ofstream file("../records/transaction_database/temp.csv"); // opens the directory
+    std::ofstream file(temp_path); // opens the directory
 
     // checks if file is open
     if(!file.is_open()){
@@ -36,10 +35,29 @@ void Client::updateTransactionFile(Structs::Node* curr){
         curr->transaction = curr->transaction->next; // moves to the next node
     }
 
-    std::filesystem::remove(file_path); // deletes the original file
-    std::filesystem::rename("../records/transaction_database/temp.csv", file_path); // renames temp file to the right file
+    file.close(); // closes file
 
-    file.close();
+    // checks if the data was writted to the file
+    if(file.fail()){
+        std::cerr << "failed to write to temporary file in updateFile()" << std::endl;
+        return;
+    }
+
+    std::error_code ec; // variable for error code
+
+    // error handling for file removal
+    if(!std::filesystem::remove(file_path, ec) && ec){
+        std::cerr << "Failed to remove original file: " << ec.message() << std::endl;
+        return;
+    }
+    
+    std::filesystem::rename(temp_path, file_path, ec); // renames file
+
+    // error handling for file renaming
+    if(ec){
+        std::cerr << "Failed to rename temporary file: " << ec.message() << std::endl;
+        return;
+    }
 }
 
 bool Client::clientControls(Structs::Node *curr){
