@@ -261,6 +261,4 @@ void General::updateFile(Structs::Node* curr){
         std::cerr << "Failed to rename temporary file: " << ec.message() << std::endl;
         return;
     }
-
-    return;
 }
