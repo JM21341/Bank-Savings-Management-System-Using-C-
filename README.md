@@ -307,3 +307,63 @@ c++
 
 #### 4. Save changes
 
+### CODE EXPLANATION
+
+1. The program starts off with including all the header files and the iostream standard library.
+```
+#include <iostream>
+#include "../header/structs.h"
+#include "../header/general.h"
+#include "../header/client.h"
+```
+
+2. Inside the main function, a variable was declared for the loop
+
+``` bool cont = true; ```
+
+3. We then create a head node which points to the first user in the list. After that the program reads the data from the file.
+
+``` 
+Structs::Node* head = NULL; 
+
+head = General::readDataFromFile(head); 
+```
+
+Inside the function, it is complex, which is why I made it as abstract as possible in the main function. First, we check for an error (if a user is already existing)
+
+``` 
+    if(head != NULL){
+        std::cout << "Something went wrong. Data already pre-exists in the program before running." << std::endl;
+        return NULL;
+    }
+```
+
+We then open the program for reading. Then, we check for any errors.
+std::string line, line2;
+
+```
+    std::ifstream file("C:\\C++ Projects\\Projects\\Console-Based_Bank_Savings_Management_System\\records\\user.csv"); 
+
+    if(!file.is_open()){
+        std::cerr << "File user.csv did not open in readDataFromFile." << std::endl;
+        return NULL;
+    }
+```
+
+We then declare a while loop to move through each line. For each line, there is a user. The program stores the data from the file inside temporary variables in the function. A temporary node was then created, then the values for that instance of an object was created.
+
+```
+while(std::getline(file, line)){
+        std::stringstream ss(line);
+        std::string ID, username, password, role;
+
+        std::getline(ss, ID, ',');
+        std::getline(ss, username, ',');
+        std::getline(ss, password, ',');
+        std::getline(ss, role, ',');
+
+        Structs::Node* temp = new Structs::Node(); // creates a temp node
+        temp->next = NULL; 
+
+        temp->data.setLoginDetails(username, password, role, ID);
+```
