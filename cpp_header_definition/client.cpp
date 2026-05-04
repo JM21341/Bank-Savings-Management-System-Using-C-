@@ -362,6 +362,7 @@ Structs::Node* Client::editPersonalInfo(Structs::Node* curr){
     // important because data might change
 
     // USER INPUT
+    std::cin.ignore();
 
     std::cout << "Enter new name: "; // full name
     std::getline(std::cin, name);
