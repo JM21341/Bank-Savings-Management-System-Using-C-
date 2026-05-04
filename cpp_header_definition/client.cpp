@@ -314,6 +314,8 @@ void Client::viewTransactionHistory(Structs::Node* curr){
         std::cout << "Transaction Amount   :  " << ((curr->transaction->details == "Deposit") ? '+' : '-') << curr->transaction->amount << std::endl; 
         std::cout << "Balance              :  " << curr->transaction->transaction_num << std::endl; 
         std::cout << "----------------------------------------" << std::endl; 
+
+        curr->transaction = curr->transaction->next;
     }
 }
 
@@ -339,10 +341,10 @@ void Client::viewPersonalInfo(Structs::Node* curr){
     std::cout << "Name         :  " << curr->data.getName() << std::endl;
     std::cout << "Age          :  " << curr->data.getAge() << std::endl;
     std::cout << "Birthdate    :  " << curr->data.getBirthdate() << std::endl;
-    std::cout << "Contact #    :  " << curr->data.getBirthdate() << std::endl;
-    std::cout << "Email        :  " << curr->data.getBirthdate() << std::endl;
-    std::cout << "Home Address :  " << curr->data.getBirthdate() << std::endl;
-    std::cout << "TIN Number   :  " << curr->data.getBirthdate() << std::endl;
+    std::cout << "Contact #    :  " << curr->data.getContactNum() << std::endl;
+    std::cout << "Email        :  " << curr->data.getEmail() << std::endl;
+    std::cout << "Home Address :  " << curr->data.getAddress() << std::endl;
+    std::cout << "TIN Number   :  " << curr->data.getTIN() << std::endl;
     std::cout << "--------------------------------------------------------" << std::endl; 
 }
 
