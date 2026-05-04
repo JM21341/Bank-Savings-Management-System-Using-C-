@@ -18,7 +18,7 @@ Structs::Transaction* General::readTransactionFromRecord(Structs::Node *curr){
     Structs::Transaction* transaction_head = NULL; // creates a head for tranasction
 
     std::stringstream filename; // for filename
-    filename << "C:\\C++ Projects\\Projects\\Console-Based_Bank_Savings_Management_System\\records\\transaction_database\\" << curr->data.getUsername() << ".csv"; // sets the filename to the directory of the specific transaction database
+    filename << "C:\\\C++ Projects\\Projects\\Console-Based_Bank_Savings_Management_System\\records\\transaction_database\\" << curr->data.getUsername() << ".csv"; // sets the filename to the directory of the specific transaction database
 
     std::string file_path = filename.str(); // converts the variable from a stringstream to string
     std::string line; // for stirubg each line
@@ -214,11 +214,11 @@ bool General::askToContinue(){
 
 void General::updateFile(Structs::Node* curr){
     std::stringstream filename; // for filename
-    filename << "../records/user_database/" << curr->data.getUsername() << ".txt"; // sets the filename to the directory of the specific transaction database
+    filename << "C:\\C++ Projects\\Projects\\Console-Based_Bank_Savings_Management_System\\records\\user_database" << curr->data.getUsername() << ".txt"; // sets the filename to the directory of the specific transaction database
 
     std::string file_path = filename.str(); // converts the variable from a stringstream to string
 
-    std::ofstream file("../records/user_database/temp.txt"); // opens the directory
+    std::ofstream file("C:\\C++ Projects\\Projects\\Console-Based_Bank_Savings_Management_System\\records\\user_database\\temp.txt"); // opens the directory and create a temp file
 
     if(!file.is_open()){
         std::cerr << "File was not created in updateFile" << std::endl;
@@ -236,7 +236,7 @@ void General::updateFile(Structs::Node* curr){
         std::endl;
 
     std::filesystem::remove(file_path);
-    std::filesystem::rename("../records/user_database/temp.txt", file_path);
+    std::filesystem::rename("C:\\C++ Projects\\Projects\\Console-Based_Bank_Savings_Management_System\\records\\user_database\\temp.txt", file_path);
 
     file.close();
 }
