@@ -207,12 +207,14 @@ Structs::Node* Client::deposit(Structs::Node *curr){
 
     std::string date;
 
-    std::cin.ignore(); // clear buffer
+    std::cin.ignore(); // clears buffer
 
+    // asking for date
     std::cout << "Enter date(MM/DD/YYYY): ";
     std::getline(std::cin, date);
 
-    Structs::Transaction* temp = new Structs::Transaction();
+    Structs::Transaction* temp = new Structs::Transaction(); // creates a temporary node
+    // assigning of values
     temp->date = date;
     temp->amount = amount;
     temp->new_balance = curr->data.getBalance();
@@ -220,31 +222,31 @@ Structs::Node* Client::deposit(Structs::Node *curr){
     temp->next = NULL;
 
     if(curr->transaction == NULL){
-        temp->transaction_num = 1;
+        temp->transaction_num = 1; // sets transaction number to 1 by default
 
         std::stringstream id;
-        id << "DEPO" << temp->transaction_num;
-        std::string new_id = id.str();
-        temp->transaction_id = new_id;
+        id << "DEPO" << temp->transaction_num; // sets the value of ID
+        std::string new_id = id.str(); // converts id from stringstream to string
+        temp->transaction_id = new_id; // assigns the ID to the transaction id
 
-        curr->transaction = temp;
+        curr->transaction = temp; // sets the transaction head ptr to temp
     } else{
-        Structs::Transaction* current_trans = curr->transaction;
-        while(current_trans->next != NULL) current_trans = current_trans->next;
+        Structs::Transaction* current_trans = curr->transaction; // creates a temporary node to traverse through the list
+        while(current_trans->next != NULL) current_trans = current_trans->next; // list traversal
 
-        temp->transaction_num = current_trans->transaction_num + 1;
+        temp->transaction_num = current_trans->transaction_num + 1; // sets the value of the current transaction num as the incrementation of the previous transaction num
 
         std::stringstream id;
-        id << "DEPO" << temp->transaction_num;
-        std::string new_id = id.str();
-        temp->transaction_id = new_id;
+        id << "DEPO" << temp->transaction_num; // sets the value of ID
+        std::string new_id = id.str(); // converts id from stringstream to string
+        temp->transaction_id = new_id; // assigns the ID to the transaction id
 
-        current_trans->next = temp;
+        current_trans->next = temp; // sets the previous link to the current/temp node
     }
 
-    General::updateFile(curr);
+    General::updateFile(curr); // updates the personal data file
 
-    Client::updateTransactionFile(curr);
+    Client::updateTransactionFile(curr); // updates the transaction_database file of that user
 
     return curr;
 }
@@ -278,17 +280,24 @@ Structs::Node* Client::withdraw(Structs::Node *curr){
         General::wait(2); // time delay
         system("cls"); // clears terminal
 
-        i++;
+        i++; // incrementation for amount of tries
+
+        if(i > 5){
+            std::cout << "Max numbers of attempts reached." << std::endl;
+            return curr;
+        }
     } while(cont);
 
-    std::string date;
+    std::string date; // stores date to string
 
     std::cin.ignore(); // clear buffer
 
+    // input date
     std::cout << "Enter date: ";
     std::getline(std::cin, date);
 
-    Structs::Transaction* temp = new Structs::Transaction();
+    Structs::Transaction* temp = new Structs::Transaction(); // creates a temporary node
+    // assigning of values
     temp->date = date;
     temp->amount = amount;
     temp->new_balance = curr->data.getBalance();
@@ -296,31 +305,31 @@ Structs::Node* Client::withdraw(Structs::Node *curr){
     temp->next = NULL;
 
     if(curr->transaction == NULL){
-        temp->transaction_num = 1;
+        temp->transaction_num = 1; // sets transaction number to 1 by default
 
         std::stringstream id;
-        id << "WTDR" << temp->transaction_num;
-        std::string new_id = id.str();
-        temp->transaction_id = new_id;
+        id << "WTDR" << temp->transaction_num; // sets the value of id
+        std::string new_id = id.str(); // converts id from stringstream to string
+        temp->transaction_id = new_id; // assigns the transaction id to the set id
 
-        curr->transaction = temp;
+        curr->transaction = temp; // sets the head of transaction to temp
     } else{
-        Structs::Transaction* current_trans = curr->transaction;
-        while(current_trans->next != NULL) current_trans = current_trans->next;
+        Structs::Transaction* current_trans = curr->transaction; // creates a temporary pointer to traverse through each node
+        while(current_trans->next != NULL) current_trans = current_trans->next; // traversing of list
 
-        temp->transaction_num = current_trans->transaction_num + 1;
+        temp->transaction_num = current_trans->transaction_num + 1; // sets transaction num to the incrementation of previous transaction num
 
         std::stringstream id;
-        id << "WTDR" << temp->transaction_num;
-        std::string new_id = id.str();
-        temp->transaction_id = new_id;
+        id << "WTDR" << temp->transaction_num; // sets the value of id
+        std::string new_id = id.str(); // converts id from stringstream to string
+        temp->transaction_id = new_id; // assigns the transaction id to the set id
 
-        current_trans->next = temp;
+        current_trans->next = temp; // sets the head of transaction to temp
     }
 
-    General::updateFile(curr);
+    General::updateFile(curr); // updates the personal data file
 
-    Client::updateTransactionFile(curr);
+    Client::updateTransactionFile(curr); // updates the transaction_database file of that user
 
     return curr;
 }
