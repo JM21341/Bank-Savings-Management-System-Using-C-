@@ -433,3 +433,94 @@ After that, we link the head to the temporary node OR find a node who has an emp
         }
 ```
 
+We then close the first file after the loop and return head.
+
+```
+    }
+
+    file.close(); // closes user.csv
+
+    return head;
+
+```
+
+4. We go back to the main function. After setting up the head node, we let the user log in. This is the first interface the user sees. We will wrap the flow first inside a do...while loop so the login will continue as long as cont/logout is true.
+
+```
+    do{
+        Structs::Node* curr = General::login(head); 
+
+        if(!cont) break;
+```
+
+We create a node named curr, which stores the user details from the login() function. This is important so that we know which node this user is. Inside the login function are as follows:
+
+```
+    std::string username, password; 
+    bool found = false; 
+
+    Structs::Node* curr = head; // create a temporary node
+```
+ 
+We create a variable for the user input of username and password. We also created a bool type variable named "found" so the loop will end until a user is found. We then create another temporary node curr which will store all the lists for the traversal.
+
+```
+    do{
+        std::cout << "Enter username: ";
+        std::getline(std::cin, username);
+        
+        std::cout << std::endl << "Enter password: ";
+        std::getline(std::cin, password);
+```
+
+Inside a do...while loop, the user inputs their username and password.
+
+We then traverse through each node in the lists. If there are any same username and password as the user typed, the found variable becomes true and the loop for traversal ends. It will continue until the curr is NULL.
+
+```
+        while(curr != NULL){
+            // if the username and password is correct, print a prompt, set found to true then break the loop
+            if(username == curr->data.getUsername() && password == curr->data.getPassword()){
+                std::cout << "You have successfully logged in." << std::endl;
+                found = true;
+                break;
+            }
+
+            curr = curr->next; // moves to the next node
+        }
+```
+
+If the user is not found, it will print that it wasn't able to find the username with the same password in the lists.
+
+```
+        if(!found){
+            std::cout << "Incorrect username and/or password. Please try again." << std::endl;
+            continue;
+        }
+    } while(!found);
+
+    return curr;
+```
+
+The loop will continue until the found is true. After the loop ends, we return curr since that is the user who logged in. Going back to main, there is a condition wherein it'll check the role of the user. If the user is a client, run the clientControls() function, which is already explained.
+
+```
+        if(curr->data.getRole() == "Client"){ 
+            cont = Client::clientControls(head); // for user controls such as transactions, edit personal info, etc.
+        }
+        else{
+            std::cout << "An error occurred in determining the user role." << std::endl;
+            break;
+        }
+    } while(cont);
+```
+
+5. Program then exits. The head is freed from the memory.
+
+```
+   std::cout << "Exiting..." << std::endl;
+
+    delete(head);
+
+    return 0;
+```
