@@ -3,6 +3,7 @@
 #include <filesystem> // for rename() and delete()
 #include <fstream> // for ofstream
 #include <sstream> // for stringstream
+#include <iomanip> // for setprecision()
 
 #include "../header/client.h"
 #include "../header/general.h"
@@ -311,8 +312,8 @@ void Client::viewTransactionHistory(Structs::Node* curr){
         std::cout << "Transaction ID       :  " << curr->transaction->transaction_id << std::endl; 
         std::cout << "Transaction Details  :  " << curr->transaction->details << std::endl; 
         std::cout << "Transaction Date     :  " << curr->transaction->date << std::endl; 
-        std::cout << "Transaction Amount   :  " << ((curr->transaction->details == "Deposit") ? '+' : '-') << curr->transaction->amount << std::endl; 
-        std::cout << "Balance              :  " << curr->transaction->new_balance << std::endl; 
+        std::cout << "Transaction Amount   :  " << ((curr->transaction->details == "Deposit") ? '+' : '-') << std::fixed << std::setprecision(2) << curr->transaction->amount << std::endl; 
+        std::cout << "Balance              :  " << std::fixed << std::setprecision(2) << curr->transaction->new_balance << std::endl; 
         std::cout << "----------------------------------------" << std::endl; 
 
         curr->transaction = curr->transaction->next;
