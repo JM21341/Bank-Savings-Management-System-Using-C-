@@ -205,6 +205,8 @@ Structs::Node* Client::deposit(Structs::Node *curr){
 
     std::string date;
 
+    std::cin.ignore();
+
     std::cout << "Enter date(MM/DD/YYYY): ";
     std::getline(std::cin, date);
 
