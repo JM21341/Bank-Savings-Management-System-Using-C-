@@ -213,7 +213,7 @@ bool General::askToContinue(){
 }
 
 void General::updateFile(Structs::Node* curr){
-    std::stringstream filename; // for filename
+    std::stringstream filename, new_filename; // for filename
     filename << "C:\\C++ Projects\\Projects\\Console-Based_Bank_Savings_Management_System\\records\\user_database\\" << curr->data.getUsername() << ".txt"; // sets the filename to the directory of the specific transaction database
 
     std::string file_path = filename.str(); // converts the variable from a stringstream to string
@@ -235,8 +235,13 @@ void General::updateFile(Structs::Node* curr){
         curr->data.getTIN() << "," << 
         std::endl;
 
+    new_filename << curr->data.getUsername() << ".txt";
+    std::string final_filename = new_filename.str();
+
+    file.close();
+
     std::filesystem::remove(file_path);
-    std::filesystem::rename("C:\\C++ Projects\\Projects\\Console-Based_Bank_Savings_Management_System\\records\\user_database\\temp.txt", file_path);
+    std::filesystem::rename("C:\\C++ Projects\\Projects\\Console-Based_Bank_Savings_Management_System\\records\\user_database\\temp.txt", final_filename);
 
     file.close();
 }
