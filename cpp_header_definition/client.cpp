@@ -21,18 +21,20 @@ void Client::updateTransactionFile(Structs::Node* curr){
         return;
     }
 
+    Structs::Transaction* current = curr->transaction; // creates a temporary current pointer
+
     // writes to that file until the current transaction in the history is NULL
     // traverses through each node and writes the data from it to the file
-    while(curr->transaction != NULL){
-        file << curr->transaction->transaction_num << "," << 
-            curr->transaction->transaction_id << "," << 
-            curr->transaction->details << "," << 
-            curr->transaction->date << "," << 
-            curr->transaction->amount << "," << 
-            curr->transaction->new_balance << "," << 
+    while(current != NULL){
+        file << current->transaction_num << "," << 
+            current->transaction_id << "," << 
+            current->details << "," << 
+            current->date << "," << 
+            current->amount << "," << 
+            current->new_balance << "," << 
             std::endl;
 
-        curr->transaction = curr->transaction->next; // moves to the next node
+        current = current->next; // moves to the next node
     }
 
     file.close(); // closes file
@@ -208,9 +210,10 @@ Structs::Node* Client::deposit(Structs::Node *curr){
     std::cin.ignore();
 
     std::cout << "Enter date(MM/DD/YYYY): ";
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::getline(std::cin, date);
 
-    Structs::Transaction* temp;
+    Structs::Transaction* temp = new Structs::Transaction();
     temp->date = date;
     temp->amount = amount;
     temp->new_balance = curr->data.getBalance();
@@ -282,6 +285,7 @@ Structs::Node* Client::withdraw(Structs::Node *curr){
     std::string date;
 
     std::cout << "Enter date: ";
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::getline(std::cin, date);
 
     Structs::Transaction* temp;
@@ -325,18 +329,20 @@ void Client::viewTransactionHistory(Structs::Node* curr){
     std::cout << "========== BANK ==========" << std::endl;
     std::cout << "Hello, " << curr->data.getUsername() << ". This is your transaction history." << std::endl;
 
+    Structs::Transaction* current = curr->transaction; // creates a temporary current pointer
+
     // traverses through each node of transaction
-    while(curr->transaction != NULL){
+    while(current != NULL){
         std::cout << "----------------------------------------" << std::endl; 
-        std::cout << "Transaction Number   :  " << curr->transaction->transaction_num << std::endl; 
-        std::cout << "Transaction ID       :  " << curr->transaction->transaction_id << std::endl; 
-        std::cout << "Transaction Details  :  " << curr->transaction->details << std::endl; 
-        std::cout << "Transaction Date     :  " << curr->transaction->date << std::endl; 
-        std::cout << "Transaction Amount   :  " << ((curr->transaction->details == "Deposit") ? '+' : '-') << std::fixed << std::setprecision(2) << curr->transaction->amount << std::endl; 
-        std::cout << "Balance              :  " << std::fixed << std::setprecision(2) << curr->transaction->new_balance << std::endl; 
+        std::cout << "Transaction Number   :  " << current->transaction_num << std::endl; 
+        std::cout << "Transaction ID       :  " << current->transaction_id << std::endl; 
+        std::cout << "Transaction Details  :  " << current->details << std::endl; 
+        std::cout << "Transaction Date     :  " << current->date << std::endl; 
+        std::cout << "Transaction Amount   :  " << ((current->details == "Deposit") ? '+' : '-') << std::fixed << std::setprecision(2) << current->amount << std::endl; 
+        std::cout << "Balance              :  " << std::fixed << std::setprecision(2) << current->new_balance << std::endl; 
         std::cout << "----------------------------------------" << std::endl; 
 
-        curr->transaction = curr->transaction->next;
+        current = current->next;
     }
 }
 
