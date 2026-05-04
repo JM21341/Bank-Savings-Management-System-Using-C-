@@ -213,18 +213,21 @@ bool General::askToContinue(){
 }
 
 void General::updateFile(Structs::Node* curr){
-    std::stringstream filename, new_filename; // for filename
-    filename << "C:\\C++ Projects\\Projects\\Console-Based_Bank_Savings_Management_System\\records\\user_database\\" << curr->data.getUsername() << ".txt"; // sets the filename to the directory of the specific transaction database
+    std::stringstream new_filename; // for filename
 
-    std::string file_path = filename.str(); // converts the variable from a stringstream to string
+    std::filesystem::path dir = "C:\\C++ Projects\\Projects\\Console-Based_Bank_Savings_Management_System\\records\\user_database"; // sets the directory of the folder to use
+    std::filesystem::path file_path = dir / (curr->data.getUsername() + ".txt"); // creates directory of the file for {username}.txt
+    std::filesystem::path temp_path = dir / "temp.txt";  // creates directory of the file for temp.txt
 
-    std::ofstream file("C:\\C++ Projects\\Projects\\Console-Based_Bank_Savings_Management_System\\records\\user_database\\temp.txt"); // opens the directory and create a temp file
+    std::ofstream file(temp_path); // opens the directory and create a temp file
 
+    // error handling for file opening
     if(!file.is_open()){
         std::cerr << "File was not created in updateFile" << std::endl;
         return;
     }
     
+    // wroites data to temp file
     file << curr->data.getName() << "," << 
         curr->data.getAge() << "," << 
         curr->data.getBirthdate() << "," << 
@@ -235,13 +238,29 @@ void General::updateFile(Structs::Node* curr){
         curr->data.getTIN() << "," << 
         std::endl;
 
-    new_filename << curr->data.getUsername() << ".txt";
-    std::string final_filename = new_filename.str();
+    file.close(); // closes file
 
-    file.close();
+    // checks if the data was writted to the file
+    if(file.fail()){
+        std::cerr << "failed to write to temporary file in updateFile()" << std::endl;
+        return;
+    }
 
-    std::filesystem::remove(file_path);
-    std::filesystem::rename("C:\\C++ Projects\\Projects\\Console-Based_Bank_Savings_Management_System\\records\\user_database\\temp.txt", final_filename);
+    std::error_code ec; // variable for error code
 
-    file.close();
+    // error handling for file removal
+    if(!std::filesystem::remove(file_path, ec) && ec){
+        std::cerr << "Failed to remove original file: " << ec.message() << std::endl;
+        return;
+    }
+    
+    std::filesystem::rename(temp_path, file_path, ec); // renames file
+
+    // error handling for file renaming
+    if(ec){
+        std::cerr << "Failed to rename temporary file: " << ec.message() << std::endl;
+        return;
+    }
+
+    return;
 }
