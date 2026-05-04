@@ -210,7 +210,6 @@ Structs::Node* Client::deposit(Structs::Node *curr){
     std::cin.ignore();
 
     std::cout << "Enter date(MM/DD/YYYY): ";
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::getline(std::cin, date);
 
     Structs::Transaction* temp = new Structs::Transaction();
@@ -285,7 +284,6 @@ Structs::Node* Client::withdraw(Structs::Node *curr){
     std::string date;
 
     std::cout << "Enter date: ";
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::getline(std::cin, date);
 
     Structs::Transaction* temp;
