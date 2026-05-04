@@ -312,7 +312,7 @@ void Client::viewTransactionHistory(Structs::Node* curr){
         std::cout << "Transaction Details  :  " << curr->transaction->details << std::endl; 
         std::cout << "Transaction Date     :  " << curr->transaction->date << std::endl; 
         std::cout << "Transaction Amount   :  " << ((curr->transaction->details == "Deposit") ? '+' : '-') << curr->transaction->amount << std::endl; 
-        std::cout << "Balance              :  " << curr->transaction->transaction_num << std::endl; 
+        std::cout << "Balance              :  " << curr->transaction->new_balance << std::endl; 
         std::cout << "----------------------------------------" << std::endl; 
 
         curr->transaction = curr->transaction->next;
