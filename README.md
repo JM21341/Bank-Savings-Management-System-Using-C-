@@ -161,7 +161,7 @@ This project serves as a practice for my software engineering career. This will 
 
 #### The following is what you might need in running this program:
 
-Note: This prerequisites are based from what I have and used. This program may or may not run for you who has a different compiler.
+Note: These prerequisites are based from what I have and used. This program may or may not run for you who has a different compiler.
 
 #### Requirements:
 1. Clang++ Compiler
@@ -558,3 +558,5 @@ I was also able to learn error handling in its simplest form. I was able to gene
 4. __CREATE AN ADMIN LOG FEATURE__. You may create an admin log feature, similar to the inbox feature but no editing. The admin log is only modified whenever the admin creates a user, removes a user or manipulates something in the program or records. 
 
 Overall, this is my recommendations for those who wish to use this repository as a reference. For those aspiring programmers, go on and take the first step in learning the basics. After that, practice it, make simple programs. Just like me, you'll learn a lot, no matter how basic it is. Good luck to all of you and have a nice day!
+
+# END
