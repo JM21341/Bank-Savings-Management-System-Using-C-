@@ -7,13 +7,15 @@
     > 1.1. Introduction \
     > 1.2. Contents \
     > 1.3. Planning 
-    >> 1.3.1. How the Program Operates \
-    >> 1.3.2. Program Flow
+        >> 1.3.1. How the Program Operates \
+        >> 1.3.2. Program Flow
 2. Development
     > 2.1. How The Topic and Concept Applies \
-    > 2.2. Code Explanation \
+    > 2.2. Code Explanation 
+        >> 2.2.1. Prerequisite Requirements
+        >> 2.2.2. Code Explanation
     > 2.3. Experiences
-3. Post-Creation
+3. Post-Development
     > 3.1. Conclusion \
     > 3.2. Reflection \
     > 3.3. Recommendations 
@@ -133,9 +135,9 @@ This project serves as a practice for my software engineering career. This will 
     > 1.1. Tasks are split into function/modules \
     > 1.2. Functions are defined in different header files 
 2. Basic Object-Oriented Programming
-    > 2.2. Used classes in defining user data \
-    > 2.3. Used setters and getters to retrieve and assign values \
-    > 2.4. Used methods in classes
+    > 2.1. Used classes in defining user data \
+    > 2.2. Used setters and getters to retrieve and assign values \
+    > 2.3. Used methods in classes
 3. Linked Lists
     > 3.1. Major data structure in the program \
     > 3.2. Traversing through a lists to find a node with an empty link, write each data of a node to a file, etc.
@@ -525,7 +527,7 @@ The first error came when I was reading the data from the file. The error was th
 
 Just after fixing the first error, another bug came. Whenever I try to do transactions, the data won't save in the file (both in transactiion_database and user_database) and would just exit the program. I knew that it was another error in the file, so I changed up the updateTransactionFile(). I've learned from the previous error that I should use the right directory. Then, it was fixed, but another bug came in the transactions as well.
 
-The date the user inputs doesn't save. When I tried to do transactions, I typed in the date, entered. I need to press enter two times so that the next line could run, which was one more bug. However, the bug was when the data was saved. I checked transaction history in the program and it says that the transaction had no date, that goes the same for the transaction_database file. So, there was something wrong with the input. THen I saw it, the problem was that the ignoring of input buffer was inserted before the INPUT, instead of before the output of "Enter date:". 
+The date the user inputs doesn't save. When I tried to do transactions, I entered in the date. I need to press enter two times so that the next line could run, which was one more bug. However, the bug was when the data was saved. I checked transaction history in the program and it says that the transaction had no date, that goes the same for the transaction_database file. So, there was something wrong with the input. Then I saw it, the problem was that the ignoring of input buffer was inserted before the INPUT, instead of before the output of "Enter date:". 
 
 There were bugs also in the editing of user profile. The data saved locally in the program, and won't save in the file. I fixed it by first, checking any errors in the updateFile(). Then I saw that there was an error in the directory again. I fixed it, but there was another problem. Now, the program only deletes the file but does not rename the temp.txt. I asked CoPilot to suggest me a fix for this without editing anything in the program, compiling or running it. It told me that the error was because of the directory again. I fixed the directory again, and it suggested me to make my code shorter. I asked suggestions on how and I learned that there was a "path" object in the filesystem header.
 
