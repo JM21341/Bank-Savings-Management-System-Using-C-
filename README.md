@@ -12,13 +12,11 @@
 2. Development
     > 2.1. How The Topic and Concept Applies \
     > 2.2. Code Explanation \
-    > 2.3. Errors Faced \
-    > 2.4. Experiences
+    > 2.3. Experiences
 3. Post-Creation
     > 3.1. Conclusion \
-    > 3.2. Problems faced \
-    > 3.3. Reflection \
-    > 3.4. Recommendations 
+    > 3.2. Reflection \
+    > 3.3. Recommendations 
 
 ## Chapter 1 : Pre-Creation
 
@@ -80,12 +78,6 @@ This project serves as a practice for my software engineering career. This will 
 ### END
 
 ## Chapter 2 : Development
-
- > 2.1. How The Topic and Concept Applies \
-> 2.2. Modularization and File Systems \
-> 2.3. Code Explanation \
-> 2.4. Errors Faced \
-> 2.5. Experiences
 
 ### How the Topic and Concept Applies
 
@@ -524,3 +516,43 @@ The loop will continue until the found is true. After the loop ends, we return c
 
     return 0;
 ```
+
+### Experiences
+
+This program was made by my own hands with some help with ChatGPT and Claude AI in simple error fixing, and CoPilot for debugging. At first, there was no problems faced, especially when I was starting out with the main function. I thought it would be easy but I was wrong, especially when I'm still a beginner for C++. The coding process wasn't all that hard, it's the debugging process which consumed all my time.
+
+The first error came when I was reading the data from the file. The error was that the program would exit before the login even occurred. That means, there was a segmentation fault. I had to look through my code but I still can't find the error. So I asked CoPilot, then it answered that the file path was wrong. I put "../records/user.csv", which was wrong and the very cause of this first error. I changed it to a full directory so it is fixed.
+
+Just after fixing the first error, another bug came. Whenever I try to do transactions, the data won't save in the file (both in transactiion_database and user_database) and would just exit the program. I knew that it was another error in the file, so I changed up the updateTransactionFile(). I've learned from the previous error that I should use the right directory. Then, it was fixed, but another bug came in the transactions as well.
+
+The date the user inputs doesn't save. When I tried to do transactions, I typed in the date, entered. I need to press enter two times so that the next line could run, which was one more bug. However, the bug was when the data was saved. I checked transaction history in the program and it says that the transaction had no date, that goes the same for the transaction_database file. So, there was something wrong with the input. THen I saw it, the problem was that the ignoring of input buffer was inserted before the INPUT, instead of before the output of "Enter date:". 
+
+There were bugs also in the editing of user profile. The data saved locally in the program, and won't save in the file. I fixed it by first, checking any errors in the updateFile(). Then I saw that there was an error in the directory again. I fixed it, but there was another problem. Now, the program only deletes the file but does not rename the temp.txt. I asked CoPilot to suggest me a fix for this without editing anything in the program, compiling or running it. It told me that the error was because of the directory again. I fixed the directory again, and it suggested me to make my code shorter. I asked suggestions on how and I learned that there was a "path" object in the filesystem header.
+
+## Chapter 3 : Post-Development
+
+### Conclusion
+
+This program may or may not continue later once the developer has learned more things. This is merely a practice project and should not be treated major as such. I want to test my skills that I've learned from the courses I took. This program applies the basics from I/O to basics of OOP. This project may be used as a reference for the developer in the near future or for other aspiring developers who seek to learn C++ or other languages.
+
+### Reflection
+
+I have learned a lot in this simple project. I was able to practice my basic git branching and merging skills, I was also able to remember how to remotely control a repository using the basic commands of git. 
+
+This minor project was also a big help for me as a beginner. I learned about the errors that I may face when handling files and how I am able to fix it. Change its directory, and set it as the directory from the local disk to that exact file. I believe that it is more safer when the directory of the cpp file is in another folder where the records cannot be EASILY accessed. 
+
+I was also able to learn error handling in its simplest form. I was able to generate an error code and use that as a reference. I also realized that error handling is used not only to check if the file is opened, but also if the file was deleted successfully and if there was an error in renaming the file. I am satisfied with the outcome and I am happy that this project was able to enhance my skills, even for a litle.
+
+### Recommendations
+
+#### The following are what I suggest developers to do to improve this simple program
+
+1. __MAKE A GUI FOR IT__. This might seem complex but I believe a GUI for this program would be nice. The user doesn't have to see the terminal but a designed, organized GUI made by the developer.
+
+2. __CREATE ADMIN CONTROLS__. This was what I planned at the beginning but I wasn't able to do it due to how complex it is. This controls may include such things: add user, remove user, view all users, view user details, view user transactions, view logs. After the login, the role must be identified as well, so no one can access admin controls when they're only a client.
+
+3. ___CREATE AN INBOX FEATURE__. You may create an inbox feature. The ADMIN may send inbox to all users or to a specific user. The user can view their inboxes and can also send inbox to a specific user. 
+
+4. __CREATE AN ADMIN LOG FEATURE__. You may create an admin log feature, similar to the inbox feature but no editing. The admin log is only modified whenever the admin creates a user, removes a user or manipulates something in the program or records. 
+
+Overall, this is my recommendations for those who wish to use this repository as a reference. For those aspiring programmers, go on and take the first step in learning the basics. After that, practice it, make simple programs. Just like me, you'll learn a lot, no matter how basic it is. Good luck to all of you and have a nice day!
